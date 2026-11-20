@@ -1,0 +1,35 @@
+{
+  "name": "techgeekprice",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "check-types": "pnpm typecheck",
+    "test": "pnpm check:removed-admin-category-route && turbo test",
+    "check:removed-admin-category-route": "node --test tooling/check-removed-admin-category-route.test.mjs && node tooling/check-removed-admin-category-route.mjs",
+    "test:e2e": "turbo test:e2e",
+    "storybook": "pnpm --filter @tgp/ui storybook",
+    "storybook:build": "pnpm --filter @tgp/ui storybook:build",
+    "storybook:coverage": "pnpm --filter @tgp/ui storybook:coverage",
+    "storybook:check": "pnpm storybook:coverage && pnpm storybook:build",
+    "storybook:admin": "pnpm --filter @tgp/admin-ui storybook",
+    "storybook:admin:build": "pnpm --filter @tgp/admin-ui storybook:build",
+    "storybook:admin:coverage": "pnpm --filter @tgp/admin-ui storybook:coverage",
+    "format": "prettier --write .",
+    "contracts:generate": "pnpm --filter @tgp/contracts generate",
+    "contracts:check": "pnpm --filter @tgp/contracts check:generated"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4",
+    "rimraf": "^6.0.0",
+    "tsdown": "^0.21.8",
+    "turbo": "^2.9.6",
+    "typescript": "5.9.2"
+  },
+  "packageManager": "pnpm@11.3.0",
+  "engines": {
+    "node": ">=24"
+  }
+}

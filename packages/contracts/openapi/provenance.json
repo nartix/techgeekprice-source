@@ -1,0 +1,10 @@
+{
+  "backendRepository": "nartix/spring-api-source",
+  "exportedAt": "2026-11-16",
+  "endpoint": "http://127.0.0.1:8080/v3/api-docs",
+  "openapi": "3.1.0",
+  "sha256": "e7871336f09c3d7932efdbe62aad6b3bf420dc2d7f077268205fff4635cf8e21",
+  "source": "Unmodified public OpenAPI runtime export; the recorded revision identifies the original backend source before the public snapshot.",
+  "exportCommand": "curl --fail --silent --show-error http://127.0.0.1:8080/v3/api-docs -o spring.openapi.json",
+  "sourceBackendRevision": "8ae412d4bfb76c9cb39a2b53ceec2e181a1053e3"
+}

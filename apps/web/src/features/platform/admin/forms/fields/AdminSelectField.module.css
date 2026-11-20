@@ -1,0 +1,10 @@
+.relationOption[data-combobox-selected] {
+  background-color: var(--admin-accent) !important;
+  color: var(--mantine-color-white) !important;
+  font-weight: 600;
+}
+
+.relationOption[data-combobox-selected]:hover {
+  background-color: var(--admin-accent-strong) !important;
+  color: var(--mantine-color-white) !important;
+}

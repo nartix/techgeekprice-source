@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.turbo/
+dist/
+build/
+coverage/
+pnpm-lock.yaml
+*.log
+packages/contracts/openapi/spring.openapi.json
+packages/contracts/src/generated/

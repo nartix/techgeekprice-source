@@ -1,0 +1,72 @@
+:root {
+  --tgp-color-page-bg: var(--mantine-color-body);
+  --tgp-color-surface: var(--mantine-color-white);
+  --tgp-color-surface-elevated: var(--mantine-color-white);
+  --tgp-color-border-subtle: var(--mantine-color-gray-3);
+  --tgp-color-text-primary: var(--mantine-color-gray-9);
+  --tgp-color-text-secondary: var(--mantine-color-gray-7);
+  --tgp-color-text-link: var(--mantine-primary-color-filled);
+  --tgp-color-price: var(--mantine-color-green-8);
+  --tgp-color-price-sale: var(--mantine-color-red-7);
+  --tgp-color-discount: var(--tgp-color-price-sale);
+  --tgp-color-merchant: var(--mantine-color-blue-7);
+  --tgp-color-rating: var(--mantine-color-orange-8);
+  --tgp-color-stock-in: var(--mantine-color-green-7);
+  --tgp-color-stock-low: var(--mantine-color-orange-8);
+  --tgp-color-stock-out: var(--mantine-color-red-7);
+  --tgp-color-success: var(--mantine-color-green-7);
+  --tgp-color-warning: var(--mantine-color-orange-8);
+  --tgp-color-danger: var(--mantine-color-red-7);
+  --tgp-color-focus-ring: var(--mantine-primary-color-filled);
+}
+
+[data-mantine-color-scheme="dark"] {
+  --tgp-color-page-bg: var(--mantine-color-body);
+  --tgp-color-surface: var(--mantine-color-dark-7);
+  --tgp-color-surface-elevated: var(--mantine-color-dark-6);
+  --tgp-color-border-subtle: var(--mantine-color-dark-4);
+  --tgp-color-text-primary: var(--mantine-color-gray-0);
+  --tgp-color-text-secondary: var(--mantine-color-dark-1);
+  --tgp-color-text-link: var(--mantine-primary-color-4);
+  --tgp-color-price: var(--mantine-color-green-4);
+  --tgp-color-price-sale: var(--mantine-color-red-4);
+  --tgp-color-discount: var(--tgp-color-price-sale);
+  --tgp-color-merchant: var(--mantine-color-blue-4);
+  --tgp-color-rating: var(--mantine-color-yellow-4);
+  --tgp-color-stock-in: var(--mantine-color-green-4);
+  --tgp-color-stock-low: var(--mantine-color-yellow-4);
+  --tgp-color-stock-out: var(--mantine-color-red-4);
+  --tgp-color-success: var(--mantine-color-green-4);
+  --tgp-color-warning: var(--mantine-color-yellow-4);
+  --tgp-color-danger: var(--mantine-color-red-4);
+  --tgp-color-focus-ring: var(--mantine-primary-color-4);
+}
+
+:where(
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [role="button"],
+  [tabindex]:not([tabindex="-1"])
+):focus-visible {
+  outline: 2px solid var(--tgp-color-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  :where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [role="button"],
+    [tabindex]:not([tabindex="-1"])
+  ):focus-visible {
+    outline-color: CanvasText;
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "globalEnv": [
+    "CI",
+    "NODE_ENV",
+    "CONFIG_PATH",
+    "SPRING_API_BASE_URL",
+    "NEXT_PUBLIC_SPRING_API_BASE_URL",
+    "TGP_CONFIG_GENERATION",
+    "TGP_E2E_EXTERNAL_URL",
+    "NEXT_PUBLIC_PORTFOLIO_DEMO"
+  ],
+  "tasks": {
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "dist/**", "!.next/cache/**"]
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "test:e2e": {
+      "dependsOn": ["build"],
+      "outputs": ["playwright-report/**", "test-results/**"]
+    }
+  }
+}

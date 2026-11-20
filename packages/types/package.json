@@ -1,0 +1,19 @@
+{
+  "name": "@tgp/types",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "check-types": "pnpm typecheck"
+  },
+  "devDependencies": {
+    "@tgp/typescript-config": "workspace:*",
+    "typescript": "5.9.2"
+  }
+}

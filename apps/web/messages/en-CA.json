@@ -1,0 +1,447 @@
+{
+  "Metadata": {
+    "title": "TechGeekPrice Admin",
+    "description": "Portfolio demonstration of user and catalogue category administration."
+  },
+  "HomePage": {
+    "title": "Hello world"
+  },
+  "Admin": {
+    "Metadata": {
+      "loginTitle": "Admin sign in",
+      "dashboardTitle": "Admin dashboard",
+      "productCategoriesTitle": "Manage product categories",
+      "usersTitle": "Manage users",
+      "userCreateTitle": "Create user",
+      "userShowTitle": "User details",
+      "userEditTitle": "Edit user"
+    },
+    "Navigation": {
+      "admin": "Admin",
+      "accountMenu": "Open account menu for {username}",
+      "collapseSidebar": "Collapse sidebar",
+      "closeNavigation": "Close navigation",
+      "dashboard": "Dashboard",
+      "expandSidebar": "Expand sidebar",
+      "general": "General",
+      "management": "Management",
+      "openNavigation": "Open navigation",
+      "pages": "Pages",
+      "products": "Products",
+      "productCategories": "Product Categories",
+      "users": "Users",
+      "logout": "Sign out"
+    },
+    "States": {
+      "sessionUnavailableTitle": "Session verification unavailable",
+      "sessionUnavailableMessage": "We could not verify your session right now. Please try again. You have not been signed out.",
+      "loading": "Loading admin dashboard",
+      "forbiddenTitle": "Access denied",
+      "forbiddenMessage": "You do not have permission to use this admin workflow.",
+      "errorTitle": "Something went wrong",
+      "errorMessage": "The admin dashboard could not complete this request.",
+      "retry": "Try again",
+      "empty": "No records found."
+    },
+    "Detail": {
+      "invalidTitle": "Record unavailable",
+      "invalidMessage": "This admin record link is invalid.",
+      "notFoundTitle": "Record not found",
+      "notFoundMessage": "This admin record could not be found.",
+      "emptyTitle": "No visible detail content",
+      "emptyMessage": "No configured detail content is visible for this record.",
+      "panelErrorTitle": "Panel unavailable",
+      "panelErrorMessage": "This panel could not be loaded."
+    },
+    "Table": {
+      "sort": {
+        "inactiveLabel": "Sort by {field}",
+        "ascendingLabel": "{field} sorted ascending. Activate to sort descending.",
+        "descendingLabel": "{field} sorted descending. Activate to sort ascending."
+      },
+      "status": {
+        "refetching": "Refreshing table data"
+      },
+      "hydration": {
+        "errorTitle": "Table data could not be prepared",
+        "errorMessage": "Try again. If the problem continues, contact an administrator."
+      }
+    },
+    "Actions": {
+      "create": "Create",
+      "edit": "Edit",
+      "delete": "Delete",
+      "show": "View details",
+      "save": "Save",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "reloadLatest": "Reload latest"
+    },
+    "Conflict": {
+      "title": "This record changed",
+      "message": "Reload the latest version before trying again."
+    },
+    "Login": {
+      "title": "Admin sign in",
+      "subtitle": "Welcome back! Please sign in to continue.",
+      "usernameLabel": "Username or email",
+      "usernameDescription": "Use the admin username or email issued for your account.",
+      "usernamePlaceholder": "Enter your username or email",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "submit": "Sign in",
+      "copyright": "© {year} Tech Geek Price. All rights reserved.",
+      "errors": {
+        "usernameRequired": "Enter your username or email.",
+        "passwordRequired": "Enter your password.",
+        "generic": "We could not sign you in. Check your credentials and try again.",
+        "apiUnavailable": "We could not reach the admin sign-in API or prepare its secure session. Make sure the API is reachable and browser cookies are allowed for this site.",
+        "sessionVerification": "Your credentials were accepted, but the admin session could not be verified. Make sure the API is reachable and browser cookies are allowed for this site.",
+        "forbidden": "This account does not have admin dashboard access."
+      },
+      "demo": {
+        "title": "Public portfolio demo",
+        "description": "Edit categories and explore the hierarchy. Users are read-only.",
+        "credentials": "Username: {username} · Password: {password}",
+        "useAccount": "Use demo account"
+      }
+    },
+    "CategoryShell": {
+      "loading": "Loading categories…",
+      "unknownSystem": "This category system is unavailable.",
+      "unsupported": "This category action is not supported.",
+      "invalidIdentifier": "This category identifier is invalid.",
+      "empty": "No categories were found.",
+      "retry": "Try again"
+    },
+    "ProductCategories": {
+      "title": "Product Categories",
+      "description": "Manage catalogue category listing scopes and availability.",
+      "fields": {
+        "parentId": "Parent ID",
+        "name": "Name",
+        "slug": "Slug",
+        "status": "Status",
+        "active": "Active",
+        "createdAt": "Created",
+        "updatedAt": "Updated",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "list": {
+        "createCategory": "Create category",
+        "pageMetadata": "Page {page} of {totalPages} - {total} total",
+        "paginationLabel": "Category pages",
+        "pageSizeLabel": "Rows per page",
+        "rootCategory": "Root category",
+        "viewChildren": "View children for {name}"
+      },
+      "filters": {
+        "label": "Category filters",
+        "qLabel": "Search",
+        "qPlaceholder": "Search names",
+        "slugLabel": "Slug",
+        "slugPlaceholder": "Exact slug",
+        "activeLabel": "Status",
+        "activeAll": "Any status",
+        "activeTrue": "Active",
+        "activeFalse": "Inactive",
+        "clear": "Clear filters",
+        "searchTooLong": "Search is longer than this category system allows.",
+        "tooManyFilters": "Too many category filters are selected.",
+        "filterUnavailable": "This filter is unavailable for the current category system."
+      },
+      "form": {
+        "createTitle": "Create category",
+        "editTitle": "Edit category",
+        "createSubmit": "Create category",
+        "editSubmit": "Save category",
+        "parentDescription": "Leave blank for a root category.",
+        "successTitle": "Category saved",
+        "createSuccess": "The category was created.",
+        "editSuccess": "The category was updated.",
+        "errorTitle": "Category could not be saved",
+        "errorMessage": "Review the category fields and try again.",
+        "loading": "Loading category",
+        "reloadLatest": "Reload latest"
+      },
+      "parentPicker": {
+        "rootOption": "Root category",
+        "searchPlaceholder": "Search parent categories",
+        "loading": "Loading parent categories",
+        "loadingMore": "Loading more parent categories",
+        "loadMore": "Load more",
+        "noResults": "No parent categories found.",
+        "retry": "Retry",
+        "failedToLoad": "Parent categories could not be loaded.",
+        "searchTooLong": "Search must be 120 characters or fewer.",
+        "inactive": "Inactive",
+        "selectedInactiveHelp": "This saved parent is inactive and cannot be selected again.",
+        "staleCategory": "This category changed or no longer exists. Reload before choosing a parent.",
+        "cursorResetFailed": "More parent categories could not be loaded. Retry the search.",
+        "continuationConflict": "More parent categories could not be loaded. Retry the search to continue.",
+        "invalidResponse": "Parent categories returned an invalid response. Retry the search.",
+        "pickerRecovered": "Parent category results were refreshed after an invalid cursor.",
+        "clearSelection": "Clear parent selection",
+        "unauthorized": "Your admin session could not be verified. Sign in again to continue.",
+        "forbidden": "You do not have permission to load parent categories."
+      },
+      "sections": {
+        "category": "Category details"
+      },
+      "validation": {
+        "nameRequired": "Enter a category name.",
+        "nameSize": "Enter a category name no longer than 255 characters.",
+        "parentIdInvalid": "Choose a valid parent category.",
+        "slugRequired": "Enter a category slug.",
+        "slugInvalid": "Use lowercase letters, numbers, and single hyphens only.",
+        "selfParentInvalid": "Choose a different parent category."
+      },
+      "conflict": {
+        "title": "This category changed",
+        "message": "Reload the latest category before trying again."
+      },
+      "show": {
+        "backToList": "Back to categories"
+      },
+      "tree": {
+        "title": "Category tree",
+        "description": "Manage a complete category tree for small category sets.",
+        "smallTreeWarning": "This full-tree view is intended for small category sets. Use the paginated category list for larger datasets.",
+        "actions": {
+          "backToList": "Back to category list",
+          "openList": "Open paginated list",
+          "refresh": "Refresh tree",
+          "expandAll": "Expand all",
+          "collapseAll": "Collapse all",
+          "expandRow": "Expand {name}",
+          "collapseRow": "Collapse {name}",
+          "move": "Move",
+          "retry": "Try again",
+          "cancel": "Cancel"
+        },
+        "columns": {
+          "category": "Category",
+          "rank": "Rank",
+          "status": "Status",
+          "updated": "Updated",
+          "actions": "Actions"
+        },
+        "states": {
+          "loading": "Loading category tree",
+          "refetching": "Refreshing category tree",
+          "emptyTitle": "No categories found",
+          "emptyMessage": "The tree is empty. Use the paginated list to create or manage categories.",
+          "tooLargeTitle": "This category set is too large for the tree view",
+          "tooLargeMessage": "Use the paginated category list for larger category sets.",
+          "unauthorizedTitle": "Admin session required",
+          "unauthorizedMessage": "Sign in again to view the category tree.",
+          "forbiddenTitle": "Access denied",
+          "forbiddenMessage": "You do not have permission to view the category tree.",
+          "incompleteTitle": "The complete tree response could not be verified",
+          "incompleteMessage": "The API did not return a trusted complete tree. Use the paginated list and try again later.",
+          "errorTitle": "Category tree could not be loaded",
+          "errorMessage": "Refresh the tree or use the paginated category list."
+        },
+        "ordering": {
+          "rankedExposed": "Showing the backend ranked order. Manual ordering controls are not available in this first tree slice.",
+          "rankedHidden": "Rank metadata is hidden. Showing the backend fallback order.",
+          "unranked": "Ranking is disabled for this category system. Showing the backend fallback order.",
+          "loading": "Checking category ordering capabilities.",
+          "error": "Ordering capabilities could not be loaded. Placement-dependent controls are hidden."
+        },
+        "move": {
+          "title": "Move category",
+          "description": "Choose a new parent for {name}.",
+          "parentLabel": "New parent",
+          "parentDescription": "Clear the field to move this category to the root level.",
+          "submit": "Move category",
+          "success": "The category was moved.",
+          "unchanged": "Choose a different parent before moving this category.",
+          "unavailable": "Moving is not available for this category system.",
+          "stale": "The category tree changed. Refresh and choose the parent again.",
+          "inactive": "Inactive categories cannot be selected as move targets.",
+          "missing": "The selected parent category is no longer available.",
+          "self": "A category cannot be moved under itself.",
+          "descendant": "A category cannot be moved under one of its descendants.",
+          "unsupportedPlacement": "This placement action is not supported right now.",
+          "invalidPlacementTarget": "The tree changed before the move was applied. The tree has been refreshed.",
+          "rankRebalanceRejected": "The category order could not be updated because too many rows would need to be rebalanced.",
+          "categoryNotFound": "This category changed or no longer exists.",
+          "validationFailed": "Choose a valid parent category and try again.",
+          "unauthorized": "Your admin session could not be verified. Sign in again to continue.",
+          "forbidden": "You do not have permission to move categories.",
+          "genericError": "The category could not be moved. Try again."
+        }
+      },
+      "scope": {
+        "contextAriaLabel": "Category listing context",
+        "allTitle": "All categories",
+        "allDescription": "Showing the flat global category list.",
+        "allAction": "All categories",
+        "rootTitle": "Root categories",
+        "rootDescription": "Showing only top-level categories.",
+        "rootAction": "Root categories",
+        "treeAction": "Open full tree",
+        "childrenTitle": "Children of category {parentId}",
+        "childrenDescription": "Showing direct child categories only.",
+        "capabilitiesLoading": "Checking category ranking capabilities.",
+        "capabilitiesError": "Ranking controls are unavailable because capabilities could not be loaded.",
+        "rankingUnavailable": "Ranking controls are unavailable for this category scope."
+      },
+      "breadcrumbs": {
+        "ariaLabel": "Category breadcrumb",
+        "root": "Root categories",
+        "loading": "Loading category breadcrumb",
+        "errorTitle": "Breadcrumb could not be loaded",
+        "errorMessage": "The category table is still available. Retry the breadcrumb or choose a safe scope.",
+        "notFoundTitle": "Parent category not found",
+        "notFoundMessage": "The selected parent category was not found.",
+        "retry": "Retry breadcrumb",
+        "allRecovery": "All categories",
+        "rootRecovery": "Root categories"
+      },
+      "actions": {
+        "show": "View details",
+        "more": "More category actions",
+        "moreFor": "More actions for {name}",
+        "deleteTitle": "Delete category",
+        "deleteMessage": "Delete {name}? This action cannot be undone.",
+        "deleteSuccess": "The category was deleted.",
+        "stateTitle": "Confirm category state change",
+        "stateMessage": "Change the active state for {name}?",
+        "activateSuccess": "The category was activated.",
+        "deactivateSuccess": "The category was deactivated.",
+        "activate": "Activate",
+        "deactivate": "Deactivate",
+        "move": "Move",
+        "moveTitle": "Move category",
+        "moveDescription": "Choose a new parent for {name}.",
+        "moveParentLabel": "New parent",
+        "moveParentDescription": "Clear the field to move this category to the root level.",
+        "moveParentPlaceholder": "Root category",
+        "moveSubmit": "Move category",
+        "moveSuccess": "The category was moved.",
+        "moveOptionsError": "Category options could not be loaded."
+      }
+    },
+    "Users": {
+      "title": "Users",
+      "description": "Manage admin-visible user records.",
+      "fields": {
+        "id": "ID",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "displayName": "Display name",
+        "roles": "Roles",
+        "permissions": "Permissions",
+        "status": "Status",
+        "active": "Active",
+        "accountNonExpired": "Account expiry",
+        "accountNonLocked": "Lock status",
+        "credentialsNonExpired": "Credential expiry",
+        "lastLoginAt": "Last login",
+        "lastActivityAt": "Last activity",
+        "createdAt": "Created",
+        "updatedAt": "Updated",
+        "createdBy": "Created by",
+        "updatedBy": "Updated by",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "accountValid": "Account valid",
+        "accountExpired": "Account expired",
+        "unlocked": "Unlocked",
+        "locked": "Locked",
+        "credentialsValid": "Credentials valid",
+        "credentialsExpired": "Credentials expired"
+      },
+      "list": {
+        "createUser": "Create user",
+        "pageMetadata": "Page {page} of {totalPages} - {total} total",
+        "paginationLabel": "User pages",
+        "pageSizeLabel": "Rows per page",
+        "notProvided": "Not provided"
+      },
+      "form": {
+        "createTitle": "Create user",
+        "editTitle": "Edit user",
+        "createSubmit": "Create user",
+        "editSubmit": "Save user",
+        "passwordDescription": "Set the initial password for this user.",
+        "rolesDescription": "Select configured admin roles.",
+        "permissionsDescription": "Select configured admin permissions.",
+        "successTitle": "User saved",
+        "createSuccess": "The user was created.",
+        "editSuccess": "The user was updated.",
+        "errorTitle": "User could not be saved",
+        "errorMessage": "Review the user fields and try again.",
+        "loading": "Loading user",
+        "reloadLatest": "Reload latest"
+      },
+      "sections": {
+        "account": "Account details",
+        "access": "Access",
+        "accessDescription": "Roles and permissions use the configured admin access values."
+      },
+      "options": {
+        "roles": {
+          "admin": "Admin",
+          "moderator": "Moderator"
+        },
+        "permissions": {
+          "access": "Admin access",
+          "usersRead": "Read users",
+          "usersStatus": "Update user status",
+          "usersWrite": "Write users",
+          "categoriesRead": "Read categories",
+          "categoriesWrite": "Write categories"
+        }
+      },
+      "validation": {
+        "usernameRequired": "Enter a username.",
+        "usernameSize": "Enter a username no longer than 100 characters.",
+        "emailRequired": "Enter an email address.",
+        "emailInvalid": "Enter a valid email address.",
+        "emailSize": "Enter an email no longer than 320 characters.",
+        "passwordRequired": "Enter a password.",
+        "passwordSize": "Enter a password between 8 and 128 characters.",
+        "passwordConfirmationRequired": "Confirm the password.",
+        "passwordConfirmationMismatch": "Passwords must match.",
+        "firstNameSize": "Enter a first name no longer than 100 characters.",
+        "lastNameSize": "Enter a last name no longer than 100 characters.",
+        "rolesSize": "Select no more than 50 roles.",
+        "permissionsSize": "Select no more than 200 permissions."
+      },
+      "conflict": {
+        "title": "This user changed",
+        "message": "Reload the latest user before trying again."
+      },
+      "show": {
+        "backToList": "Back to users"
+      },
+      "actions": {
+        "show": "View details",
+        "edit": "Edit",
+        "deleteTitle": "Delete user",
+        "deleteMessage": "Delete {username}? This action cannot be undone.",
+        "deleteSuccess": "The user was deleted.",
+        "stateTitle": "Confirm user status change",
+        "stateMessage": "Change the active status for {username}?",
+        "activateSuccess": "The user was activated.",
+        "deactivateSuccess": "The user was deactivated.",
+        "activate": "Activate",
+        "deactivate": "Deactivate"
+      }
+    }
+  }
+}

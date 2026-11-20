@@ -1,0 +1,642 @@
+.themeScope {
+  --admin-theme-scope: 1;
+}
+
+.root {
+  --admin-page-bg: var(--mantine-color-adminNeutral-1);
+  --admin-chrome-bg: var(--mantine-color-white);
+  --admin-surface-bg: var(--mantine-color-white);
+  --admin-surface-bg-subtle: var(--mantine-color-adminNeutral-0);
+  --admin-border: var(--tgp-color-border-subtle);
+  --admin-control-bg: var(--mantine-color-white);
+  --admin-table-row-bg: var(--mantine-color-adminNeutral-0);
+  --admin-table-hover-bg: var(--mantine-color-adminBlue-0);
+  --admin-table-header-bg: var(--mantine-color-adminNeutral-1);
+  --admin-table-header-text: var(--mantine-color-adminNeutral-9);
+  --admin-text: var(--tgp-color-text-primary);
+  --admin-text-muted: var(--tgp-color-text-secondary);
+  --admin-nav-text: var(--mantine-color-adminNeutral-6);
+  --admin-nav-icon-bg: var(--admin-surface-bg-subtle);
+  --admin-nav-icon-text: var(--mantine-color-adminNeutral-5);
+  --admin-sidebar-hover-bg: var(--mantine-color-adminBlue-1);
+  --admin-sidebar-hover-border: var(--mantine-color-adminBlue-2);
+  --admin-sidebar-hover-text: var(--mantine-color-adminBlue-9);
+  --admin-sidebar-hover-icon-bg: var(--mantine-color-adminBlue-7);
+  --admin-sidebar-hover-icon-text: var(--mantine-color-white);
+  --admin-hover-bg: var(--mantine-color-adminBlue-0);
+  --admin-active-bg: var(--mantine-color-adminBlue-1);
+  --admin-active-border: var(--mantine-color-adminBlue-3);
+  --admin-active-text: var(--mantine-color-adminBlue-8);
+  --admin-active-icon-bg: var(--mantine-color-adminBlue-7);
+  --admin-active-icon-text: var(--mantine-color-white);
+  --admin-accent: var(--mantine-color-adminBlue-7);
+  --admin-accent-strong: var(--mantine-color-adminBlue-8);
+  --admin-accent-soft: var(--mantine-color-adminBlue-1);
+  --admin-button-light-bg: var(--mantine-color-adminBlue-0);
+  --admin-button-light-border: var(--mantine-color-adminBlue-2);
+  --admin-button-light-text: var(--mantine-color-adminBlue-8);
+  --admin-button-light-hover-bg: var(--mantine-color-adminBlue-1);
+  --admin-button-light-hover-text: var(--mantine-color-adminBlue-9);
+  --admin-button-subtle-bg: var(--mantine-color-white);
+  --admin-button-subtle-border: var(--mantine-color-adminNeutral-3);
+  --admin-button-subtle-text: var(--mantine-color-adminBlue-8);
+  --admin-button-subtle-hover-bg: var(--mantine-color-adminBlue-0);
+  --admin-button-subtle-hover-text: var(--mantine-color-adminBlue-9);
+  --admin-profile-icon-bg: var(--mantine-color-adminBlue-1);
+  --admin-profile-icon-text: var(--mantine-color-adminBlue-7);
+  --admin-switch-track-bg: var(--mantine-color-adminNeutral-4);
+  --admin-switch-track-border: var(--mantine-color-adminNeutral-5);
+  --admin-switch-track-text: var(--mantine-color-adminNeutral-8);
+  --admin-switch-checked-bg: var(--mantine-color-adminBlue-8);
+  --admin-switch-checked-border: var(--mantine-color-adminBlue-8);
+  --admin-switch-checked-text: var(--mantine-color-white);
+  --admin-switch-thumb-bg: var(--mantine-color-white);
+  --admin-switch-disabled-track-bg: var(--mantine-color-adminNeutral-2);
+  --admin-switch-disabled-track-border: var(--mantine-color-adminNeutral-4);
+  --admin-switch-disabled-thumb-bg: var(--mantine-color-adminNeutral-0);
+  --admin-shadow: 0 14px 36px rgb(15 23 42 / 0.08);
+
+  --mantine-color-body: var(--admin-page-bg);
+  --mantine-color-dimmed: var(--admin-text-muted);
+  --mantine-color-text: var(--admin-text);
+  --mantine-color-default: var(--admin-surface-bg);
+  --mantine-color-default-hover: var(--admin-hover-bg);
+  --mantine-color-default-border: var(--admin-border);
+  --mantine-color-anchor: var(--admin-accent);
+  --mantine-primary-color-filled: var(--admin-accent);
+  --mantine-primary-color-filled-hover: var(--admin-accent-strong);
+
+  min-height: 100dvh;
+  background: var(--admin-page-bg);
+  color: var(--admin-text);
+}
+
+:global([data-mantine-color-scheme="dark"]) .root {
+  --admin-page-bg: var(--mantine-color-adminNeutral-9);
+  --admin-chrome-bg: var(--mantine-color-adminNeutral-8);
+  --admin-surface-bg: var(--mantine-color-adminNeutral-7);
+  --admin-surface-bg-subtle: var(--mantine-color-adminNeutral-8);
+  --admin-border: var(--tgp-color-border-subtle);
+  --admin-control-bg: var(--mantine-color-adminNeutral-7);
+  --admin-table-row-bg: var(--mantine-color-adminNeutral-7);
+  --admin-table-hover-bg: var(--mantine-color-adminNeutral-6);
+  --admin-table-header-bg: var(--mantine-color-adminNeutral-6);
+  --admin-table-header-text: var(--mantine-color-adminNeutral-0);
+  --admin-text: var(--tgp-color-text-primary);
+  --admin-text-muted: var(--tgp-color-text-secondary);
+  --admin-nav-text: var(--mantine-color-adminNeutral-4);
+  --admin-nav-icon-bg: var(--admin-surface-bg-subtle);
+  --admin-nav-icon-text: var(--mantine-color-adminNeutral-3);
+  --admin-sidebar-hover-bg: var(--mantine-color-adminNeutral-6);
+  --admin-sidebar-hover-border: var(--mantine-color-adminBlue-5);
+  --admin-sidebar-hover-text: var(--mantine-color-white);
+  --admin-sidebar-hover-icon-bg: var(--mantine-color-adminBlue-5);
+  --admin-sidebar-hover-icon-text: var(--mantine-color-white);
+  --admin-hover-bg: var(--mantine-color-adminNeutral-7);
+  --admin-active-bg: var(--mantine-color-adminBlue-9);
+  --admin-active-border: var(--mantine-color-adminBlue-5);
+  --admin-active-text: var(--mantine-color-white);
+  --admin-active-icon-bg: var(--mantine-color-adminBlue-5);
+  --admin-active-icon-text: var(--mantine-color-white);
+  --admin-accent: var(--mantine-color-adminBlue-5);
+  --admin-accent-strong: var(--mantine-color-adminBlue-6);
+  --admin-accent-soft: var(--mantine-color-adminBlue-9);
+  --admin-button-light-bg: var(--mantine-color-adminBlue-9);
+  --admin-button-light-border: var(--mantine-color-adminBlue-6);
+  --admin-button-light-text: var(--mantine-color-adminBlue-1);
+  --admin-button-light-hover-bg: var(--mantine-color-adminBlue-8);
+  --admin-button-light-hover-text: var(--mantine-color-white);
+  --admin-button-subtle-bg: var(--mantine-color-adminNeutral-8);
+  --admin-button-subtle-border: var(--mantine-color-adminNeutral-6);
+  --admin-button-subtle-text: var(--mantine-color-adminBlue-2);
+  --admin-button-subtle-hover-bg: var(--mantine-color-adminNeutral-6);
+  --admin-button-subtle-hover-text: var(--mantine-color-white);
+  --admin-profile-icon-bg: var(--mantine-color-adminBlue-9);
+  --admin-profile-icon-text: var(--mantine-color-adminBlue-0);
+  --admin-switch-track-bg: var(--mantine-color-adminNeutral-5);
+  --admin-switch-track-border: var(--mantine-color-adminNeutral-4);
+  --admin-switch-track-text: var(--mantine-color-white);
+  --admin-switch-checked-bg: var(--mantine-color-adminBlue-7);
+  --admin-switch-checked-border: var(--mantine-color-adminBlue-4);
+  --admin-switch-checked-text: var(--mantine-color-white);
+  --admin-switch-thumb-bg: var(--mantine-color-white);
+  --admin-switch-disabled-track-bg: var(--mantine-color-adminNeutral-6);
+  --admin-switch-disabled-track-border: var(--mantine-color-adminNeutral-5);
+  --admin-switch-disabled-thumb-bg: var(--mantine-color-adminNeutral-3);
+  --admin-shadow: none;
+}
+
+.header {
+  border-bottom: 1px solid var(--admin-border);
+  background: var(--admin-chrome-bg);
+  color: var(--admin-text);
+}
+
+@media (min-width: 48em) {
+  .header {
+    display: none;
+  }
+}
+
+.navbar {
+  border-inline-end: 1px solid var(--admin-border);
+  background: var(--admin-chrome-bg);
+  color: var(--admin-nav-text);
+}
+
+.main {
+  min-height: 100dvh;
+  background: var(--admin-page-bg);
+  color: var(--admin-text);
+}
+
+.headerContent {
+  height: 100%;
+  gap: var(--mantine-spacing-md);
+  padding-inline: var(--mantine-spacing-lg);
+}
+
+.headerMenuButton,
+.profileIconButton,
+.collapseButton,
+.logoutIcon {
+  color: var(--admin-nav-text);
+}
+
+.headerMenuButton {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  color: var(--admin-text);
+}
+
+.headerMenuButton svg {
+  display: block;
+}
+
+.headerMenuButton:hover,
+.profileIconButton:hover,
+.collapseButton:hover,
+.logoutIcon:hover {
+  background: var(--admin-hover-bg);
+  color: var(--admin-active-text);
+}
+
+.headerTitle {
+  color: var(--admin-text);
+  letter-spacing: 0;
+}
+
+.sidebar {
+  height: 100%;
+  padding: var(--mantine-spacing-md);
+}
+
+.sidebarCollapsed {
+  align-items: center;
+  padding-inline: var(--mantine-spacing-xs);
+}
+
+.sidebarCollapsed .navList,
+.sidebarCollapsed .logoutWrapper,
+.sidebarCollapsed .userInfoWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.profilePanel {
+  width: 100%;
+  min-height: 64px;
+  border-radius: var(--mantine-radius-md);
+  color: var(--admin-text);
+}
+
+.profileIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--mantine-radius-md);
+  background: var(--admin-profile-icon-bg);
+  color: var(--admin-profile-icon-text);
+}
+
+.profileIconButton {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  border-radius: var(--mantine-radius-md);
+  border: 1px solid var(--admin-border);
+  background: var(--admin-control-bg);
+  color: var(--admin-nav-icon-text);
+}
+
+.profileButtonIcon {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 150ms ease;
+}
+
+.profileButtonHoverIcon {
+  opacity: 0;
+}
+
+.profileIconButton:hover .profileButtonDefaultIcon,
+.profileIconButton:focus-visible .profileButtonDefaultIcon {
+  opacity: 0;
+}
+
+.profileIconButton:hover .profileButtonHoverIcon,
+.profileIconButton:focus-visible .profileButtonHoverIcon {
+  opacity: 1;
+}
+
+.profileTitle {
+  color: var(--admin-text);
+  line-height: 1.1;
+}
+
+.profileSubtitle {
+  color: var(--admin-text-muted);
+  line-height: 1.1;
+}
+
+.profileCaret {
+  color: var(--admin-text-muted);
+}
+
+.collapseButton {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  padding: 0;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--mantine-radius-md);
+  background: var(--admin-surface-bg-subtle);
+}
+
+.navList {
+  width: 100%;
+}
+
+.navProfileGroup,
+.navGroup {
+  width: 100%;
+}
+
+.navGroup + .navGroup {
+  margin-top: var(--mantine-spacing-sm);
+}
+
+.navGroupLabel {
+  padding-inline: var(--mantine-spacing-xs);
+  padding-top: var(--mantine-spacing-xs);
+  color: var(--admin-text-muted);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.sidebarCollapsed .navProfileGroup,
+.sidebarCollapsed .navGroup {
+  align-items: center;
+}
+
+.sidebarCollapsed .navGroup + .navGroup {
+  margin-top: 0;
+}
+
+.sidebarLink {
+  min-height: 48px;
+  border: 1px solid transparent;
+  border-radius: var(--mantine-radius-md);
+  color: var(--admin-nav-text);
+  font-weight: 600;
+  text-decoration-line: none;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.sidebarLink:hover {
+  border-color: var(--admin-sidebar-hover-border);
+  background: var(--admin-sidebar-hover-bg);
+  color: var(--admin-sidebar-hover-text);
+  text-decoration-line: none;
+}
+
+.sidebarLink[data-active] {
+  border-color: var(--admin-active-border);
+  background: var(--admin-active-bg);
+  color: var(--admin-active-text);
+  font-weight: 700;
+}
+
+.sidebarLinkCollapsed {
+  width: 52px;
+  height: 52px;
+  min-height: 52px;
+  flex: 0 0 52px;
+}
+
+.sidebarLinkIcon {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--mantine-radius-md);
+  background: var(--admin-nav-icon-bg);
+  color: var(--admin-nav-icon-text);
+}
+
+.sidebarLink[data-active] .sidebarLinkIcon {
+  background: var(--admin-active-icon-bg);
+  color: var(--admin-active-icon-text);
+}
+
+.sidebarLink:hover .sidebarLinkIcon {
+  background: var(--admin-sidebar-hover-icon-bg);
+  color: var(--admin-sidebar-hover-icon-text);
+}
+
+.sidebarLink[data-active]:hover .sidebarLinkIcon {
+  background: var(--admin-active-icon-bg);
+  color: var(--admin-active-icon-text);
+}
+
+.logoutWrapper {
+  width: 100%;
+  padding-top: var(--mantine-spacing-sm);
+}
+
+.userInfoWrapper {
+  width: 100%;
+  margin-top: auto;
+  padding-top: var(--mantine-spacing-sm);
+}
+
+.userInfoPanel {
+  width: 100%;
+  min-height: 64px;
+  padding: var(--mantine-spacing-xs);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--mantine-radius-md);
+  background: var(--admin-surface-bg-subtle);
+  color: var(--admin-text);
+}
+
+.userInfoTarget,
+.userInfoIconButton {
+  color: var(--admin-text);
+  text-align: start;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.userInfoTarget:hover,
+.userInfoIconButton:hover {
+  border-color: var(--admin-sidebar-hover-border);
+  background: var(--admin-sidebar-hover-bg);
+  color: var(--admin-sidebar-hover-text);
+}
+
+.userInfoIconButton:hover .userInfoAvatarCompact {
+  border-color: var(--admin-sidebar-hover-border);
+  background: var(--admin-sidebar-hover-icon-bg);
+  color: var(--admin-sidebar-hover-icon-text);
+}
+
+.userInfoTarget:focus-visible,
+.userInfoIconButton:focus-visible {
+  outline: 2px solid var(--tgp-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.userInfoIconButton {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  border-radius: var(--mantine-radius-md);
+}
+
+.userInfoAvatar,
+.userInfoAvatarCompact {
+  border-radius: var(--mantine-radius-md);
+  background: var(--admin-profile-icon-bg);
+  color: var(--admin-profile-icon-text);
+  font-weight: 700;
+}
+
+.userInfoAvatar {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+}
+
+.userInfoAvatarCompact {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  border: 1px solid var(--admin-border);
+}
+
+.userInfoName {
+  color: var(--admin-text);
+  line-height: 1.1;
+}
+
+.userInfoRole {
+  color: var(--admin-text-muted);
+  line-height: 1.1;
+}
+
+.userInfoChevron {
+  margin-inline-start: auto;
+  flex: 0 0 auto;
+  color: var(--admin-text-muted);
+}
+
+.userInfoDropdown {
+  --popover-bg: var(--admin-surface-bg);
+  --popover-border-color: var(--admin-border);
+
+  border-color: var(--admin-border);
+  border-radius: var(--mantine-radius-md);
+  background: var(--admin-surface-bg);
+  background-color: var(--admin-surface-bg);
+  color: var(--admin-text);
+  opacity: 1;
+}
+
+.userInfoDropdown :global(.mantine-Popover-arrow),
+:global(.mantine-Popover-arrow):has(+ .userInfoDropdown) {
+  border-color: var(--admin-border);
+  background: var(--admin-surface-bg);
+  background-color: var(--admin-surface-bg);
+  opacity: 1;
+}
+
+.userInfoDropdownContent {
+  padding: var(--mantine-spacing-xs);
+}
+
+.logoutButton {
+  color: var(--admin-nav-text);
+}
+
+.logoutButton:hover {
+  background: var(--admin-hover-bg);
+  color: var(--admin-active-text);
+}
+
+.logoutIcon {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-control-bg);
+}
+
+.root :global(.mantine-Table-table) {
+  --table-border-color: var(--admin-border);
+  --table-hover-color: var(--admin-table-hover-bg);
+  --table-striped-color: var(--admin-table-row-bg);
+}
+
+.root :global(.mantine-Table-table[data-with-table-border]) {
+  border-color: var(--admin-border);
+}
+
+.root :global(.mantine-Table-thead),
+.root :global(.mantine-Table-th) {
+  background: var(--admin-table-header-bg);
+  color: var(--admin-table-header-text);
+}
+
+.root :global(.mantine-Table-th) {
+  font-weight: 700;
+}
+
+.root :global(.mantine-Button-root) {
+  font-weight: 700;
+}
+
+.root :global(.mantine-Pagination-control) {
+  border-color: var(--admin-border);
+  background: var(--admin-control-bg);
+  color: var(--admin-text);
+}
+
+.root :global(.mantine-Pagination-control[data-active]) {
+  border-color: var(--admin-accent);
+  background: var(--admin-accent);
+  color: #ffffff;
+}
+
+.root
+  :global(
+    .mantine-Pagination-control:hover:not(:disabled):not([data-disabled]):not(
+        [data-active]
+      )
+  ) {
+  background: var(--admin-hover-bg);
+  color: var(--admin-active-text);
+}
+
+.root :global(.mantine-Switch-label) {
+  color: var(--admin-text);
+}
+
+.root :global(.mantine-Switch-track) {
+  border: 1px solid var(--admin-switch-track-border);
+  background-color: var(--admin-switch-track-bg);
+  color: var(--admin-switch-track-text);
+}
+
+.root :global(.mantine-Switch-thumb) {
+  background-color: var(--admin-switch-thumb-bg);
+  box-shadow: 0 0 0 1px rgb(8 13 19 / 0.18);
+}
+
+.root :global(.mantine-Switch-input:checked + .mantine-Switch-track) {
+  border-color: var(--admin-switch-checked-border);
+  background-color: var(--admin-switch-checked-bg);
+  color: var(--admin-switch-checked-text);
+}
+
+.root :global(.mantine-Switch-input:disabled + .mantine-Switch-track),
+.root :global(.mantine-Switch-input[data-disabled] + .mantine-Switch-track) {
+  border-color: var(--admin-switch-disabled-track-border);
+  background-color: var(--admin-switch-disabled-track-bg);
+  color: var(--admin-text-muted);
+}
+
+.root :global(.mantine-Switch-input:disabled + * > .mantine-Switch-thumb),
+.root
+  :global(.mantine-Switch-input[data-disabled] + * > .mantine-Switch-thumb) {
+  background-color: var(--admin-switch-disabled-thumb-bg);
+}
+
+.dashboardHome {
+  color: var(--admin-text);
+}
+
+.dashboardGrid {
+  display: grid;
+  gap: var(--mantine-spacing-md);
+  align-items: stretch;
+}
+
+@media (min-width: 48em) {
+  .dashboardGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.dashboardCard {
+  border-color: var(--admin-border);
+  background: var(--admin-surface-bg);
+  box-shadow: var(--admin-shadow);
+}
+
+.dashboardCardContent {
+  height: 100%;
+}
+
+.dashboardCardHeader {
+  min-height: 40px;
+}
+
+.dashboardCardTitle {
+  line-height: 1.2;
+}
+
+.dashboardCardIcon {
+  background: var(--admin-accent-soft);
+  color: var(--admin-accent);
+}
+
+.dashboardCardDescription {
+  flex: 1;
+  color: var(--admin-text-muted);
+}
+
+.dashboardCardAction {
+  align-self: flex-start;
+}
+
+@media (forced-colors: active) {
+  .sidebarLink[data-active],
+  .profileIcon,
+  .profileIconButton,
+  .dashboardCardIcon {
+    outline: 1px solid CanvasText;
+  }
+}

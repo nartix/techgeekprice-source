@@ -1,0 +1,20 @@
+.description,
+.dropdown {
+  --picker-secondary-color: light-dark(
+    var(--mantine-color-gray-7),
+    var(--mantine-color-dark-1)
+  );
+}
+
+.description {
+  color: var(--picker-secondary-color);
+}
+
+.dropdown {
+  --mantine-color-dimmed: var(--picker-secondary-color);
+}
+
+.option[data-combobox-selected] {
+  color: var(--picker-highlight-color);
+  --mantine-color-dimmed: var(--picker-highlight-color);
+}

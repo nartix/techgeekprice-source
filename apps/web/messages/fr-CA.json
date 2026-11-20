@@ -1,0 +1,447 @@
+{
+  "Metadata": {
+    "title": "Administration TechGeekPrice",
+    "description": "Démonstration de portfolio pour la gestion des utilisateurs et des catégories du catalogue."
+  },
+  "HomePage": {
+    "title": "Bonjour le monde"
+  },
+  "Admin": {
+    "Metadata": {
+      "loginTitle": "Connexion administrateur",
+      "dashboardTitle": "Tableau de bord administrateur",
+      "productCategoriesTitle": "Gérer les catégories de produits",
+      "usersTitle": "Gérer les utilisateurs",
+      "userCreateTitle": "Créer un utilisateur",
+      "userShowTitle": "Détails de l'utilisateur",
+      "userEditTitle": "Modifier l'utilisateur"
+    },
+    "Navigation": {
+      "admin": "Administration",
+      "accountMenu": "Ouvrir le menu du compte de {username}",
+      "collapseSidebar": "Réduire la barre latérale",
+      "closeNavigation": "Fermer la navigation",
+      "dashboard": "Tableau de bord",
+      "expandSidebar": "Déployer la barre latérale",
+      "general": "Général",
+      "management": "Gestion",
+      "openNavigation": "Ouvrir la navigation",
+      "pages": "Pages",
+      "products": "Produits",
+      "productCategories": "Catégories de produits",
+      "users": "Utilisateurs",
+      "logout": "Déconnexion"
+    },
+    "States": {
+      "sessionUnavailableTitle": "Vérification de session indisponible",
+      "sessionUnavailableMessage": "Nous ne pouvons pas vérifier votre session pour le moment. Veuillez réessayer. Vous n’avez pas été déconnecté.",
+      "loading": "Chargement du tableau de bord administrateur",
+      "forbiddenTitle": "Accès refusé",
+      "forbiddenMessage": "Vous n'avez pas l'autorisation d'utiliser ce flux administrateur.",
+      "errorTitle": "Une erreur s'est produite",
+      "errorMessage": "Le tableau de bord administrateur n'a pas pu terminer cette demande.",
+      "retry": "Réessayer",
+      "empty": "Aucun enregistrement trouvé."
+    },
+    "Detail": {
+      "invalidTitle": "Enregistrement indisponible",
+      "invalidMessage": "Ce lien d'enregistrement administrateur est invalide.",
+      "notFoundTitle": "Enregistrement introuvable",
+      "notFoundMessage": "Cet enregistrement administrateur est introuvable.",
+      "emptyTitle": "Aucun contenu détaillé visible",
+      "emptyMessage": "Aucun contenu détaillé configuré n'est visible pour cet enregistrement.",
+      "panelErrorTitle": "Panneau indisponible",
+      "panelErrorMessage": "Ce panneau n'a pas pu être chargé."
+    },
+    "Table": {
+      "sort": {
+        "inactiveLabel": "Trier par {field}",
+        "ascendingLabel": "{field} trié en ordre croissant. Activer pour trier en ordre décroissant.",
+        "descendingLabel": "{field} trié en ordre décroissant. Activer pour trier en ordre croissant."
+      },
+      "status": {
+        "refetching": "Actualisation des données du tableau"
+      },
+      "hydration": {
+        "errorTitle": "Les données du tableau n'ont pas pu être préparées",
+        "errorMessage": "Réessayez. Si le problème persiste, contactez un administrateur."
+      }
+    },
+    "Actions": {
+      "create": "Créer",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "show": "Voir les détails",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "confirm": "Confirmer",
+      "reloadLatest": "Recharger la plus récente version"
+    },
+    "Conflict": {
+      "title": "Cet enregistrement a changé",
+      "message": "Rechargez la plus récente version avant de réessayer."
+    },
+    "Login": {
+      "title": "Connexion administrateur",
+      "subtitle": "Bienvenue! Veuillez vous connecter pour continuer.",
+      "usernameLabel": "Nom d'utilisateur ou courriel",
+      "usernameDescription": "Utilisez le nom d'utilisateur ou le courriel administrateur associé à votre compte.",
+      "usernamePlaceholder": "Entrez votre nom d'utilisateur ou votre courriel",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe",
+      "submit": "Se connecter",
+      "copyright": "© {year} Tech Geek Price. Tous droits réservés.",
+      "errors": {
+        "usernameRequired": "Entrez votre nom d'utilisateur ou votre courriel.",
+        "passwordRequired": "Entrez votre mot de passe.",
+        "generic": "Nous n'avons pas pu vous connecter. Vérifiez vos identifiants et réessayez.",
+        "apiUnavailable": "Nous n'avons pas pu joindre l'API de connexion administrateur ni préparer sa session sécurisée. Assurez-vous que l'API est joignable et que les cookies sont autorisés pour ce site.",
+        "sessionVerification": "Vos identifiants ont été acceptés, mais la session administrateur n'a pas pu être vérifiée. Assurez-vous que l'API est joignable et que les cookies sont autorisés pour ce site.",
+        "forbidden": "Ce compte n'a pas accès au tableau de bord administrateur."
+      },
+      "demo": {
+        "title": "Démonstration publique du portfolio",
+        "description": "Modifiez les catégories et explorez la hiérarchie. Les utilisateurs sont en lecture seule.",
+        "credentials": "Identifiant : {username} · Mot de passe : {password}",
+        "useAccount": "Utiliser le compte de démonstration"
+      }
+    },
+    "CategoryShell": {
+      "loading": "Chargement des catégories…",
+      "unknownSystem": "Ce système de catégories est indisponible.",
+      "unsupported": "Cette action de catégorie n’est pas prise en charge.",
+      "invalidIdentifier": "Cet identifiant de catégorie est invalide.",
+      "empty": "Aucune catégorie n’a été trouvée.",
+      "retry": "Réessayer"
+    },
+    "ProductCategories": {
+      "title": "Catégories de produits",
+      "description": "Gérez les portées de liste et la disponibilité des catégories du catalogue.",
+      "fields": {
+        "parentId": "ID parent",
+        "name": "Nom",
+        "slug": "Slug",
+        "status": "Statut",
+        "active": "Active",
+        "createdAt": "Créée",
+        "updatedAt": "Mise à jour",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "list": {
+        "createCategory": "Créer une catégorie",
+        "pageMetadata": "Page {page} de {totalPages} - {total} au total",
+        "paginationLabel": "Pages de catégories",
+        "pageSizeLabel": "Lignes par page",
+        "rootCategory": "Catégorie racine",
+        "viewChildren": "Voir les enfants de {name}"
+      },
+      "filters": {
+        "label": "Filtres de catégories",
+        "qLabel": "Recherche",
+        "qPlaceholder": "Rechercher les noms",
+        "slugLabel": "Slug",
+        "slugPlaceholder": "Slug exact",
+        "activeLabel": "Statut",
+        "activeAll": "Tous les statuts",
+        "activeTrue": "Active",
+        "activeFalse": "Inactive",
+        "clear": "Effacer les filtres",
+        "searchTooLong": "La recherche dépasse la longueur permise pour ce système de catégories.",
+        "tooManyFilters": "Trop de filtres de catégories sont sélectionnés.",
+        "filterUnavailable": "Ce filtre n'est pas disponible pour le système de catégories actuel."
+      },
+      "form": {
+        "createTitle": "Créer une catégorie",
+        "editTitle": "Modifier la catégorie",
+        "createSubmit": "Créer la catégorie",
+        "editSubmit": "Enregistrer la catégorie",
+        "parentDescription": "Laissez vide pour une catégorie racine.",
+        "successTitle": "Catégorie enregistrée",
+        "createSuccess": "La catégorie a été créée.",
+        "editSuccess": "La catégorie a été mise à jour.",
+        "errorTitle": "La catégorie n'a pas pu être enregistrée",
+        "errorMessage": "Vérifiez les champs de la catégorie et réessayez.",
+        "loading": "Chargement de la catégorie",
+        "reloadLatest": "Recharger la plus récente version"
+      },
+      "parentPicker": {
+        "rootOption": "Catégorie racine",
+        "searchPlaceholder": "Rechercher les catégories parentes",
+        "loading": "Chargement des catégories parentes",
+        "loadingMore": "Chargement d'autres catégories parentes",
+        "loadMore": "Charger plus",
+        "noResults": "Aucune catégorie parente trouvée.",
+        "retry": "Réessayer",
+        "failedToLoad": "Les catégories parentes n'ont pas pu être chargées.",
+        "searchTooLong": "La recherche doit contenir 120 caractères ou moins.",
+        "inactive": "Inactive",
+        "selectedInactiveHelp": "Cette catégorie parente enregistrée est inactive et ne peut pas être sélectionnée de nouveau.",
+        "staleCategory": "Cette catégorie a changé ou n'existe plus. Rechargez avant de choisir une catégorie parente.",
+        "cursorResetFailed": "D'autres catégories parentes n'ont pas pu être chargées. Réessayez la recherche.",
+        "continuationConflict": "D'autres catégories parentes n'ont pas pu être chargées. Réessayez la recherche pour continuer.",
+        "invalidResponse": "Les catégories parentes ont renvoyé une réponse non valide. Réessayez la recherche.",
+        "pickerRecovered": "Les résultats des catégories parentes ont été actualisés après un curseur non valide.",
+        "clearSelection": "Effacer la sélection de catégorie parente",
+        "unauthorized": "Votre session administrateur n'a pas pu être vérifiée. Reconnectez-vous pour continuer.",
+        "forbidden": "Vous n'avez pas l'autorisation de charger les catégories parentes."
+      },
+      "sections": {
+        "category": "Détails de la catégorie"
+      },
+      "validation": {
+        "nameRequired": "Entrez un nom de catégorie.",
+        "nameSize": "Entrez un nom de catégorie d'au plus 255 caractères.",
+        "parentIdInvalid": "Choisissez une catégorie parente valide.",
+        "slugRequired": "Entrez un slug de catégorie.",
+        "slugInvalid": "Utilisez seulement des lettres minuscules, des chiffres et des traits d'union simples.",
+        "selfParentInvalid": "Choisissez une autre catégorie parente."
+      },
+      "conflict": {
+        "title": "Cette catégorie a changé",
+        "message": "Rechargez la plus récente version de la catégorie avant de réessayer."
+      },
+      "show": {
+        "backToList": "Retour aux catégories"
+      },
+      "tree": {
+        "title": "Arborescence des catégories",
+        "description": "Gérez une arborescence complète pour les petits ensembles de catégories.",
+        "smallTreeWarning": "Cette vue complète est destinée aux petits ensembles de catégories. Utilisez la liste paginée pour les ensembles plus volumineux.",
+        "actions": {
+          "backToList": "Retour à la liste des catégories",
+          "openList": "Ouvrir la liste paginée",
+          "refresh": "Actualiser l'arborescence",
+          "expandAll": "Tout déployer",
+          "collapseAll": "Tout réduire",
+          "expandRow": "Déployer {name}",
+          "collapseRow": "Réduire {name}",
+          "move": "Déplacer",
+          "retry": "Réessayer",
+          "cancel": "Annuler"
+        },
+        "columns": {
+          "category": "Catégorie",
+          "rank": "Rang",
+          "status": "Statut",
+          "updated": "Mise à jour",
+          "actions": "Actions"
+        },
+        "states": {
+          "loading": "Chargement de l'arborescence des catégories",
+          "refetching": "Actualisation de l'arborescence des catégories",
+          "emptyTitle": "Aucune catégorie trouvée",
+          "emptyMessage": "L'arborescence est vide. Utilisez la liste paginée pour créer ou gérer des catégories.",
+          "tooLargeTitle": "Cet ensemble de catégories est trop volumineux pour la vue arborescente",
+          "tooLargeMessage": "Utilisez la liste paginée pour les ensembles de catégories plus volumineux.",
+          "unauthorizedTitle": "Session administrateur requise",
+          "unauthorizedMessage": "Reconnectez-vous pour consulter l'arborescence des catégories.",
+          "forbiddenTitle": "Accès refusé",
+          "forbiddenMessage": "Vous n'avez pas l'autorisation de consulter l'arborescence des catégories.",
+          "incompleteTitle": "La réponse complète de l'arborescence n'a pas pu être vérifiée",
+          "incompleteMessage": "L'API n'a pas retourné une arborescence complète fiable. Utilisez la liste paginée et réessayez plus tard.",
+          "errorTitle": "L'arborescence des catégories n'a pas pu être chargée",
+          "errorMessage": "Actualisez l'arborescence ou utilisez la liste paginée."
+        },
+        "ordering": {
+          "rankedExposed": "Affiche l'ordre classé fourni par le serveur. Les contrôles d'ordre manuel ne sont pas disponibles dans cette première version de l'arborescence.",
+          "rankedHidden": "Les métadonnées de rang sont masquées. Affiche l'ordre de repli fourni par le serveur.",
+          "unranked": "Le classement est désactivé pour ce système de catégories. Affiche l'ordre de repli fourni par le serveur.",
+          "loading": "Vérification des capacités d'ordre des catégories.",
+          "error": "Les capacités d'ordre n'ont pas pu être chargées. Les contrôles dépendants du placement sont masqués."
+        },
+        "move": {
+          "title": "Déplacer la catégorie",
+          "description": "Choisissez une nouvelle catégorie parente pour {name}.",
+          "parentLabel": "Nouvelle catégorie parente",
+          "parentDescription": "Effacez le champ pour déplacer cette catégorie à la racine.",
+          "submit": "Déplacer la catégorie",
+          "success": "La catégorie a été déplacée.",
+          "unchanged": "Choisissez une autre catégorie parente avant de déplacer cette catégorie.",
+          "unavailable": "Le déplacement n'est pas disponible pour ce système de catégories.",
+          "stale": "L'arborescence des catégories a changé. Actualisez et choisissez de nouveau la catégorie parente.",
+          "inactive": "Les catégories inactives ne peuvent pas être sélectionnées comme destinations.",
+          "missing": "La catégorie parente sélectionnée n'est plus disponible.",
+          "self": "Une catégorie ne peut pas être déplacée sous elle-même.",
+          "descendant": "Une catégorie ne peut pas être déplacée sous l'un de ses descendants.",
+          "unsupportedPlacement": "Cette action de placement n'est pas prise en charge pour le moment.",
+          "invalidPlacementTarget": "L'arborescence a changé avant l'application du déplacement. Elle a été actualisée.",
+          "rankRebalanceRejected": "L'ordre des catégories n'a pas pu être mis à jour, car trop de lignes devraient être rééquilibrées.",
+          "categoryNotFound": "Cette catégorie a changé ou n'existe plus.",
+          "validationFailed": "Choisissez une catégorie parente valide et réessayez.",
+          "unauthorized": "Votre session administrateur n'a pas pu être vérifiée. Reconnectez-vous pour continuer.",
+          "forbidden": "Vous n'avez pas l'autorisation de déplacer des catégories.",
+          "genericError": "La catégorie n'a pas pu être déplacée. Réessayez."
+        }
+      },
+      "scope": {
+        "contextAriaLabel": "Contexte de liste des catégories",
+        "allTitle": "Toutes les catégories",
+        "allDescription": "Affiche la liste globale et plate des catégories.",
+        "allAction": "Toutes les catégories",
+        "rootTitle": "Catégories racines",
+        "rootDescription": "Affiche seulement les catégories de premier niveau.",
+        "rootAction": "Catégories racines",
+        "treeAction": "Ouvrir l'arborescence complète",
+        "childrenTitle": "Enfants de la catégorie {parentId}",
+        "childrenDescription": "Affiche seulement les catégories enfants directes.",
+        "capabilitiesLoading": "Vérification des capacités de classement des catégories.",
+        "capabilitiesError": "Les contrôles de classement sont indisponibles parce que les capacités n'ont pas pu être chargées.",
+        "rankingUnavailable": "Les contrôles de classement sont indisponibles pour cette portée de catégories."
+      },
+      "breadcrumbs": {
+        "ariaLabel": "Fil d'Ariane des catégories",
+        "root": "Catégories racines",
+        "loading": "Chargement du fil d'Ariane de la catégorie",
+        "errorTitle": "Le fil d'Ariane n'a pas pu être chargé",
+        "errorMessage": "La table des catégories reste disponible. Réessayez le fil d'Ariane ou choisissez une portée sûre.",
+        "notFoundTitle": "Catégorie parente introuvable",
+        "notFoundMessage": "La catégorie parente sélectionnée est introuvable.",
+        "retry": "Réessayer le fil d'Ariane",
+        "allRecovery": "Toutes les catégories",
+        "rootRecovery": "Catégories racines"
+      },
+      "actions": {
+        "show": "Voir les détails",
+        "more": "Plus d'actions de catégorie",
+        "moreFor": "Plus d'actions pour {name}",
+        "deleteTitle": "Supprimer la catégorie",
+        "deleteMessage": "Supprimer {name}? Cette action est irréversible.",
+        "deleteSuccess": "La catégorie a été supprimée.",
+        "stateTitle": "Confirmer le changement d'état",
+        "stateMessage": "Changer l'état actif de {name}?",
+        "activateSuccess": "La catégorie a été activée.",
+        "deactivateSuccess": "La catégorie a été désactivée.",
+        "activate": "Activer",
+        "deactivate": "Désactiver",
+        "move": "Déplacer",
+        "moveTitle": "Déplacer la catégorie",
+        "moveDescription": "Choisissez une nouvelle catégorie parente pour {name}.",
+        "moveParentLabel": "Nouvelle catégorie parente",
+        "moveParentDescription": "Effacez le champ pour déplacer cette catégorie à la racine.",
+        "moveParentPlaceholder": "Catégorie racine",
+        "moveSubmit": "Déplacer la catégorie",
+        "moveSuccess": "La catégorie a été déplacée.",
+        "moveOptionsError": "Les options de catégories n'ont pas pu être chargées."
+      }
+    },
+    "Users": {
+      "title": "Utilisateurs",
+      "description": "Gérez les dossiers utilisateurs visibles dans l'administration.",
+      "fields": {
+        "id": "ID",
+        "username": "Nom d'utilisateur",
+        "email": "Courriel",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmer le mot de passe",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "displayName": "Nom affiché",
+        "roles": "Rôles",
+        "permissions": "Permissions",
+        "status": "Statut",
+        "active": "Actif",
+        "accountNonExpired": "Expiration du compte",
+        "accountNonLocked": "État du verrouillage",
+        "credentialsNonExpired": "Expiration des identifiants",
+        "lastLoginAt": "Dernière connexion",
+        "lastActivityAt": "Dernière activité",
+        "createdAt": "Créé",
+        "updatedAt": "Mis à jour",
+        "createdBy": "Créé par",
+        "updatedBy": "Mis à jour par",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif",
+        "accountValid": "Compte valide",
+        "accountExpired": "Compte expiré",
+        "unlocked": "Déverrouillé",
+        "locked": "Verrouillé",
+        "credentialsValid": "Identifiants valides",
+        "credentialsExpired": "Identifiants expirés"
+      },
+      "list": {
+        "createUser": "Créer un utilisateur",
+        "pageMetadata": "Page {page} de {totalPages} - {total} au total",
+        "paginationLabel": "Pages d'utilisateurs",
+        "pageSizeLabel": "Lignes par page",
+        "notProvided": "Non fourni"
+      },
+      "form": {
+        "createTitle": "Créer un utilisateur",
+        "editTitle": "Modifier l'utilisateur",
+        "createSubmit": "Créer l'utilisateur",
+        "editSubmit": "Enregistrer l'utilisateur",
+        "passwordDescription": "Définissez le mot de passe initial de cet utilisateur.",
+        "rolesDescription": "Sélectionnez les rôles admin configurés.",
+        "permissionsDescription": "Sélectionnez les permissions admin configurées.",
+        "successTitle": "Utilisateur enregistré",
+        "createSuccess": "L'utilisateur a été créé.",
+        "editSuccess": "L'utilisateur a été mis à jour.",
+        "errorTitle": "L'utilisateur n'a pas pu être enregistré",
+        "errorMessage": "Vérifiez les champs de l'utilisateur et réessayez.",
+        "loading": "Chargement de l'utilisateur",
+        "reloadLatest": "Recharger la plus récente version"
+      },
+      "sections": {
+        "account": "Détails du compte",
+        "access": "Accès",
+        "accessDescription": "Les rôles et permissions utilisent les valeurs d'accès administrateur configurées."
+      },
+      "options": {
+        "roles": {
+          "admin": "Administrateur",
+          "moderator": "Modérateur"
+        },
+        "permissions": {
+          "access": "Accès administrateur",
+          "usersRead": "Lire les utilisateurs",
+          "usersStatus": "Modifier le statut des utilisateurs",
+          "usersWrite": "Modifier les utilisateurs",
+          "categoriesRead": "Lire les catégories",
+          "categoriesWrite": "Modifier les catégories"
+        }
+      },
+      "validation": {
+        "usernameRequired": "Entrez un nom d'utilisateur.",
+        "usernameSize": "Entrez un nom d'utilisateur d'au plus 100 caractères.",
+        "emailRequired": "Entrez une adresse courriel.",
+        "emailInvalid": "Entrez une adresse courriel valide.",
+        "emailSize": "Entrez une adresse courriel d'au plus 320 caractères.",
+        "passwordRequired": "Entrez un mot de passe.",
+        "passwordSize": "Entrez un mot de passe de 8 à 128 caractères.",
+        "passwordConfirmationRequired": "Confirmez le mot de passe.",
+        "passwordConfirmationMismatch": "Les mots de passe doivent correspondre.",
+        "firstNameSize": "Entrez un prénom d'au plus 100 caractères.",
+        "lastNameSize": "Entrez un nom de famille d'au plus 100 caractères.",
+        "rolesSize": "Sélectionnez au plus 50 rôles.",
+        "permissionsSize": "Sélectionnez au plus 200 permissions."
+      },
+      "conflict": {
+        "title": "Cet utilisateur a changé",
+        "message": "Rechargez la plus récente version de l'utilisateur avant de réessayer."
+      },
+      "show": {
+        "backToList": "Retour aux utilisateurs"
+      },
+      "actions": {
+        "show": "Voir les détails",
+        "edit": "Modifier",
+        "deleteTitle": "Supprimer l'utilisateur",
+        "deleteMessage": "Supprimer {username}? Cette action est irréversible.",
+        "deleteSuccess": "L'utilisateur a été supprimé.",
+        "stateTitle": "Confirmer le changement d'état de l'utilisateur",
+        "stateMessage": "Modifier l'état actif de {username}?",
+        "activateSuccess": "L'utilisateur a été activé.",
+        "deactivateSuccess": "L'utilisateur a été désactivé.",
+        "activate": "Activer",
+        "deactivate": "Désactiver"
+      }
+    }
+  }
+}

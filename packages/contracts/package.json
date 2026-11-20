@@ -1,0 +1,23 @@
+{
+  "name": "@tgp/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "typecheck": "pnpm check:generated && tsc --noEmit",
+    "check-types": "pnpm typecheck",
+    "generate": "node scripts/generate-openapi.mjs",
+    "check:generated": "node scripts/generate-openapi.mjs --check",
+    "test": "node --test scripts/generate-openapi.test.mjs"
+  },
+  "devDependencies": {
+    "@tgp/typescript-config": "workspace:*",
+    "openapi-typescript": "7.13.0",
+    "typescript": "5.9.2"
+  }
+}

@@ -1,0 +1,66 @@
+:root {
+  --tgp-admin-color-page-bg: var(--mantine-color-adminNeutral-0);
+  --tgp-admin-color-shell-bg: var(--mantine-color-white);
+  --tgp-admin-color-surface: var(--mantine-color-white);
+  --tgp-admin-color-surface-elevated: var(--mantine-color-white);
+  --tgp-admin-color-border-subtle: var(--mantine-color-adminNeutral-2);
+  --tgp-admin-color-text-primary: var(--mantine-color-adminNeutral-8);
+  --tgp-admin-color-text-secondary: var(--mantine-color-adminNeutral-5);
+  --tgp-admin-color-text-link: var(--mantine-color-adminBlue-7);
+  --tgp-admin-color-success: var(--mantine-color-green-7);
+  --tgp-admin-color-warning: var(--mantine-color-yellow-8);
+  --tgp-admin-color-danger: var(--mantine-color-red-7);
+  --tgp-admin-color-focus-ring: var(--mantine-color-adminBlue-6);
+  --tgp-admin-color-table-header-bg: var(--mantine-color-adminNeutral-1);
+  --tgp-admin-color-table-row-hover: var(--mantine-color-adminBlue-0);
+  --tgp-admin-color-breadcrumb-link: var(--mantine-color-adminBlue-7);
+  --tgp-admin-color-breadcrumb-current: var(--mantine-color-adminNeutral-8);
+}
+
+[data-mantine-color-scheme="dark"] {
+  --tgp-admin-color-page-bg: var(--mantine-color-adminNeutral-9);
+  --tgp-admin-color-shell-bg: var(--mantine-color-adminNeutral-8);
+  --tgp-admin-color-surface: var(--mantine-color-adminNeutral-8);
+  --tgp-admin-color-surface-elevated: var(--mantine-color-adminNeutral-7);
+  --tgp-admin-color-border-subtle: var(--mantine-color-adminNeutral-6);
+  --tgp-admin-color-text-primary: var(--mantine-color-adminNeutral-0);
+  --tgp-admin-color-text-secondary: var(--mantine-color-adminNeutral-3);
+  --tgp-admin-color-text-link: var(--mantine-color-adminBlue-3);
+  --tgp-admin-color-success: var(--mantine-color-green-4);
+  --tgp-admin-color-warning: var(--mantine-color-yellow-4);
+  --tgp-admin-color-danger: var(--mantine-color-red-4);
+  --tgp-admin-color-focus-ring: var(--mantine-color-adminBlue-4);
+  --tgp-admin-color-table-header-bg: var(--mantine-color-adminNeutral-7);
+  --tgp-admin-color-table-row-hover: var(--mantine-color-adminNeutral-7);
+  --tgp-admin-color-breadcrumb-link: var(--mantine-color-adminBlue-3);
+  --tgp-admin-color-breadcrumb-current: var(--mantine-color-adminNeutral-0);
+}
+
+:where(
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [role="button"],
+  [tabindex]:not([tabindex="-1"])
+):focus-visible {
+  outline: 2px solid var(--tgp-admin-color-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  :where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [role="button"],
+    [tabindex]:not([tabindex="-1"])
+  ):focus-visible {
+    outline-color: CanvasText;
+  }
+}
