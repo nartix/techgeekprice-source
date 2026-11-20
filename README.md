@@ -75,3 +75,23 @@ Dependencies retain their respective licenses. Bundled Geist fonts are covered
 by the [SIL Open Font License](apps/web/src/app/fonts/OFL.txt).
 This source snapshot does not grant an additional open-source license for the
 project's original code.
+
+## Screenshots
+
+Captured from the [live admin demo](https://categorylisting.ferozfaiz.com).
+
+### Dashboard
+
+![TechGeekPrice admin dashboard in light mode](docs/images/dashboard.png)
+
+### Category hierarchy
+
+![Expanded category hierarchy with nested categories and management actions](docs/images/category-hierarchy.png)
+
+### Move category
+
+![Category move dialog with a bounded, scrollable parent selector in dark mode](docs/images/category-move.png)
+
+### Mobile layout
+
+<img src="docs/images/mobile-categories.png" alt="Category hierarchy on a mobile screen in dark mode" width="390" />
