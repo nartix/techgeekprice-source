@@ -7,7 +7,8 @@ import {
   Text,
 } from "@mantine/core";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { expect, waitFor, within } from "storybook/test";
 
 import { CursorHierarchyPicker } from "../../../src/inputs/hierarchy-picker/CursorHierarchyPicker";
 
@@ -117,4 +118,49 @@ function PaginatedModalPicker() {
 
 export const PaginatedInModal: Story = {
   render: () => <PaginatedModalPicker />,
+};
+
+function BottomEdgePicker() {
+  const [opened, setOpened] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [value, setValue] = useState("");
+  useEffect(() => {
+    if (!opened) return;
+    const timer = setTimeout(() => setLoaded(true), 350);
+    return () => clearTimeout(timer);
+  }, [opened]);
+
+  return (
+    <div style={{ position: "fixed", bottom: 90, insetInline: 16 }}>
+      <CursorHierarchyPicker
+        label="Category"
+        loading={opened && !loaded}
+        options={loaded ? options : []}
+        value={value}
+        onChange={setValue}
+        onOpenChange={setOpened}
+      />
+    </div>
+  );
+}
+
+export const DelayedResultsNearBottom: Story = {
+  render: () => <BottomEdgePicker />,
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const input = canvas.getByRole("combobox", { name: "Category" });
+    await userEvent.click(input);
+    const popup = within(canvasElement.ownerDocument.body);
+    const lastOption = await popup.findByRole("option", {
+      name: /Archived long-running product category/,
+    });
+    await waitFor(() => {
+      const list = popup.getByRole("listbox").getBoundingClientRect();
+      expect(list.bottom).toBeLessThanOrEqual(
+        input.getBoundingClientRect().top,
+      );
+      expect(lastOption.getBoundingClientRect().bottom).toBeLessThanOrEqual(
+        list.bottom + 1,
+      );
+    });
+  },
 };

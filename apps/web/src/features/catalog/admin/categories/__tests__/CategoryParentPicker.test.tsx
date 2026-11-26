@@ -1,3 +1,4 @@
+import { waitFor } from "@testing-library/react";
 import { useState } from "react";
 import { describe, expect, it, vi } from "vitest";
 
@@ -138,7 +139,9 @@ describe("CategoryParentPicker", () => {
 
     expect(screen.getByText("Inactive")).toBeVisible();
     await user.click(inactiveOption);
-    expect(screen.getByRole("combobox", { name: /parent id/i })).toHaveValue("");
+    expect(screen.getByRole("combobox", { name: /parent id/i })).toHaveValue(
+      "",
+    );
   });
 
   it("loads configured Product Category parent options and hydrates inactive selected values only when selected", async () => {
@@ -206,6 +209,30 @@ describe("CategoryParentPicker", () => {
     );
   });
 
+  it("can load another page after reopening the parent list", async () => {
+    const user = userEvent.setup();
+    const api = createApi(({ query }) =>
+      query?.cursor
+        ? slice([parentOption({ id: 3, label: "Cameras", slug: "cameras" })])
+        : slice([parentOption()], { hasMore: true, nextCursor: "next" }),
+    );
+
+    render(<PickerHarness api={api} />);
+    const input = screen.getByRole("combobox", { name: /parent id/i });
+    await user.click(input);
+    await screen.findByRole("button", { name: /load more/i });
+    const requestsBeforeClosing = vi.mocked(api.custom).mock.calls.length;
+    await user.keyboard("{Escape}");
+    await user.click(input);
+    await waitFor(() =>
+      expect(api.custom).toHaveBeenCalledTimes(requestsBeforeClosing + 1),
+    );
+    await user.click(screen.getByRole("button", { name: /load more/i }));
+    expect(
+      await screen.findByRole("option", { name: /cameras/i }),
+    ).toBeVisible();
+  });
+
   it("shows loading, retry, root-only, and load-more states", async () => {
     const user = userEvent.setup();
     let failNext = true;
@@ -233,7 +260,9 @@ describe("CategoryParentPicker", () => {
     ).toBeVisible();
 
     await user.click(screen.getByRole("button", { name: /load more/i }));
-    expect(await screen.findByRole("option", { name: /cameras/i })).toBeVisible();
+    expect(
+      await screen.findByRole("option", { name: /cameras/i }),
+    ).toBeVisible();
   });
 });
 
@@ -268,9 +297,7 @@ function PickerHarness({
 function createApi(
   resolver: (
     args: Parameters<AdminFormOptionLoaderApi["custom"]>[0],
-  ) =>
-    | ReturnType<typeof slice>
-    | Promise<ReturnType<typeof slice>>,
+  ) => ReturnType<typeof slice> | Promise<ReturnType<typeof slice>>,
 ): AdminFormOptionLoaderApi {
   return {
     custom: vi.fn(async (args) =>

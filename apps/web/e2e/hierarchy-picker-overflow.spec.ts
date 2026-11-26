@@ -1,4 +1,4 @@
-import { expect, test, type Locator } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 import { execFile } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
@@ -47,25 +47,7 @@ for (const scenario of [
     page,
   }, testInfo) => {
     await page.setViewportSize(scenario.viewport);
-    await page.route("**/*", async (route) => {
-      const pathname = decodeURIComponent(
-        new URL(route.request().url()).pathname,
-      );
-      const file = resolve(storybookRoot, `.${pathname}`);
-      if (!file.startsWith(`${storybookRoot}${sep}`)) {
-        await route.abort();
-        return;
-      }
-      try {
-        await route.fulfill({
-          body: await readFile(file),
-          contentType:
-            contentTypes[extname(file)] ?? "application/octet-stream",
-        });
-      } catch {
-        await route.fulfill({ status: 404, body: "Missing Storybook asset" });
-      }
-    });
+    await serveStorybook(page);
     await page.goto(
       `/iframe.html?id=inputs-hierarchy-picker-cursorhierarchypicker--paginated-in-modal&viewMode=story&globals=colorScheme:${scenario.theme}`,
     );
@@ -162,6 +144,49 @@ for (const scenario of [
     await expect(
       page.getByRole("button", { name: "Move category", exact: true }),
     ).toBeFocused();
+  });
+}
+
+test("delayed category results flip above a field near the bottom", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 640 });
+  await serveStorybook(page);
+  await page.goto(
+    "/iframe.html?id=inputs-hierarchy-picker-cursorhierarchypicker--delayed-results-near-bottom&viewMode=story",
+  );
+  const input = page.getByRole("combobox", { name: "Category" });
+  await input.click();
+  await expect(page.getByRole("option")).toHaveCount(3);
+  const dropdown = page.getByRole("listbox").locator("..");
+  await expectInViewport(dropdown);
+  await expect
+    .poll(async () => {
+      const panel = await dropdown.boundingBox();
+      const field = await input.boundingBox();
+      return Boolean(panel && field && panel.y + panel.height <= field.y);
+    })
+    .toBe(true);
+});
+
+async function serveStorybook(page: Page) {
+  await page.route("**/*", async (route) => {
+    const pathname = decodeURIComponent(
+      new URL(route.request().url()).pathname,
+    );
+    const file = resolve(storybookRoot, `.${pathname}`);
+    if (!file.startsWith(`${storybookRoot}${sep}`)) {
+      await route.abort();
+      return;
+    }
+    try {
+      await route.fulfill({
+        body: await readFile(file),
+        contentType: contentTypes[extname(file)] ?? "application/octet-stream",
+      });
+    } catch {
+      await route.fulfill({ status: 404, body: "Missing Storybook asset" });
+    }
   });
 }
 

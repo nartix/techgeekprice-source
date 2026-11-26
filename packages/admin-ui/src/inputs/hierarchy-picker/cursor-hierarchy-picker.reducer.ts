@@ -59,7 +59,7 @@ export function cursorHierarchyPickerReducer(
     case "reset":
       return createCursorHierarchyPickerState(action);
     case "first-slice-loaded":
-      return applySlice(state, action, action.options);
+      return applySlice({ ...state, seenCursors: [] }, action, action.options);
     case "continuation-loaded":
       return applySlice(state, action, [...state.remote, ...action.options]);
     case "continuation-conflict":

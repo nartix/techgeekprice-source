@@ -151,6 +151,7 @@ export function CategoryActions({
             method: "post",
             values: { active: nextActive },
           });
+          await invalidate({ resource, invalidates: ["list"] });
           if (stateSuccessMessage) {
             notification.open?.({
               message:

@@ -132,14 +132,7 @@ export function CursorHierarchyPicker({
           "--picker-highlight-color": `light-dark(${highlightColor("light")}, ${highlightColor("dark")})`,
         },
       }}
-      middlewares={{
-        size: {
-          padding: 8,
-          apply({ availableHeight, elements }) {
-            elements.floating.style.maxHeight = `min(20rem, ${Math.max(0, availableHeight)}px)`;
-          },
-        },
-      }}
+      middlewares={{ flip: { padding: 8 } }}
       store={combobox}
       onOptionSubmit={(nextValue) => {
         const optionId = nextValue === EMPTY_OPTION_VALUE ? "" : nextValue;
@@ -177,7 +170,9 @@ export function CursorHierarchyPicker({
         />
       </Combobox.Target>
       <Combobox.Dropdown
-        mah="min(20rem, calc(100dvh - 1rem))"
+        // A side-specific height would trap newly loaded results in the space
+        // measured for the loader. Let Mantine flip on content resize.
+        mah="min(20rem, calc(50dvh - 2rem))"
         style={{
           display: combobox.dropdownOpened ? "flex" : "none",
           flexDirection: "column",

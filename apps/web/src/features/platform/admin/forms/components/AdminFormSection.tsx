@@ -1,4 +1,5 @@
-import { Box, SimpleGrid, Stack, Text, Title } from "@mantine/core";
+import { Box, Stack, Text, Title } from "@mantine/core";
+import type { CSSProperties } from "react";
 import type { FieldValues, UseFormReturn } from "react-hook-form";
 
 import type {
@@ -11,6 +12,7 @@ import {
   createAdminFormRuntimeContext,
 } from "../utils/adminFormVisibility";
 import { AdminGeneratedField } from "./AdminGeneratedField";
+import styles from "./AdminFormSection.module.css";
 
 interface AdminFormSectionProps<TValues extends FieldValues> {
   api?: AdminFormOptionLoaderApi;
@@ -51,7 +53,7 @@ export function AdminFormSection<TValues extends FieldValues>({
   }
 
   return (
-    <Box component="section">
+    <Box component="section" className={styles.section}>
       <Stack gap="sm">
         {section.title ? (
           <Title order={3} size="h4">
@@ -63,7 +65,11 @@ export function AdminFormSection<TValues extends FieldValues>({
             {section.description}
           </Text>
         ) : null}
-        <SimpleGrid cols={{ base: 1, md: section.columns ?? 2 }} spacing="md">
+        <div
+          className={styles.fields}
+          data-paired={(section.columns ?? 2) > 1}
+          style={{ "--section-columns": section.columns ?? 2 } as CSSProperties}
+        >
           {section.fields.map((field) => (
             <AdminGeneratedField
               key={field.name}
@@ -77,7 +83,7 @@ export function AdminFormSection<TValues extends FieldValues>({
               roles={roles}
             />
           ))}
-        </SimpleGrid>
+        </div>
       </Stack>
     </Box>
   );

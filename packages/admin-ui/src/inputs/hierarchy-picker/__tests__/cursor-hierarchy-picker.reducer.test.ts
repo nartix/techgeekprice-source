@@ -33,6 +33,28 @@ describe("cursorHierarchyPickerReducer", () => {
     expect(state.seenCursors).toEqual(["cursor-2"]);
   });
 
+  it("starts a fresh cursor history when reopening a paginated list", () => {
+    const firstPage = {
+      type: "first-slice-loaded",
+      options: [selected],
+      hasMore: true,
+      nextCursor: "1",
+    } as const;
+    const first = cursorHierarchyPickerReducer(
+      createCursorHierarchyPickerState({ root }),
+      firstPage,
+    );
+    const reopened = cursorHierarchyPickerReducer(first, firstPage);
+    expect(reopened).toEqual(first);
+
+    const loop = cursorHierarchyPickerReducer(reopened, {
+      ...firstPage,
+      type: "continuation-loaded",
+    });
+    expect(loop.hasMore).toBe(false);
+    expect(loop.recovery).toBe("retry-first-slice");
+  });
+
   it("retains ordinary options and blocks continuation after an unrecognized cursor conflict", () => {
     const initial = cursorHierarchyPickerReducer(
       createCursorHierarchyPickerState({ root }),

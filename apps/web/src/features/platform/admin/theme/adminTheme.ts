@@ -4,6 +4,9 @@ import {
   type VariantColorsResolver,
 } from "@mantine/core";
 
+import fieldClasses from "./AdminField.module.css";
+import dropdownClasses from "./AdminDropdown.module.css";
+
 const adminVariantColorResolver: VariantColorsResolver = (input) => {
   const colors = defaultVariantColorsResolver(input);
   const isPrimaryAdminColor =
@@ -94,6 +97,9 @@ export const adminTheme = createTheme({
     ],
   },
   components: {
+    Input: {
+      classNames: { input: fieldClasses.input },
+    },
     ActionIcon: {
       defaultProps: {
         color: "adminBlue",
@@ -129,22 +135,21 @@ export const adminTheme = createTheme({
         variant: "subtle",
       },
     },
+    Combobox: { classNames: { dropdown: dropdownClasses.dropdown } },
+    Menu: { classNames: { dropdown: dropdownClasses.dropdown } },
     Select: {
+      classNames: { dropdown: dropdownClasses.dropdown },
       defaultProps: {
         radius: "md",
       },
       styles: {
         input: {
           borderColor: "var(--admin-border)",
-          backgroundColor: "var(--admin-control-bg)",
           color: "var(--admin-text)",
         },
         dropdown: {
-          borderColor: "var(--admin-border)",
-          backgroundColor: "var(--admin-surface-bg)",
-        },
-        option: {
-          color: "var(--admin-text)",
+          borderColor:
+            "var(--admin-border, var(--mantine-color-default-border))",
         },
       },
     },
@@ -178,7 +183,6 @@ export const adminTheme = createTheme({
       styles: {
         input: {
           borderColor: "var(--admin-border)",
-          backgroundColor: "var(--admin-control-bg)",
           color: "var(--admin-text)",
         },
         label: {

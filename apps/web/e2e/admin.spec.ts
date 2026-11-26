@@ -240,6 +240,24 @@ test("renders public login separately from the protected shell", async ({
   );
 });
 
+test("admin sign-in stays disabled before hydration and uses POST for native submission", async ({
+  browser,
+  baseURL,
+}) => {
+  const context = await browser.newContext({
+    baseURL,
+    javaScriptEnabled: false,
+  });
+  try {
+    const page = await context.newPage();
+    await page.goto("/en-CA/admin/login");
+    await expect(page.locator("form")).toHaveAttribute("method", "post");
+    await expect(page.getByRole("button", { name: /sign in/i })).toBeDisabled();
+  } finally {
+    await context.close();
+  }
+});
+
 test("admin can log in, reach dashboard, and log out under two minutes", async ({
   page,
 }) => {
@@ -445,6 +463,39 @@ test("category lazy listing scopes serialize safe requests", async ({ page }) =>
   await expect
     .poll(() => categoryListRequests.at(-1)?.searchParams.get("parentId"))
     .toBe("1");
+});
+
+test("deactivating a category refreshes the active-only list", async ({ page }) => {
+  let active = true;
+  let activeOnly = false;
+  await mockAdminApi(page, {
+    identity: adminIdentity,
+    categoryListItems: () =>
+      activeOnly && !active ? [] : [{ ...categoryFixture, active }],
+    onCategoryListRequest: (url) => {
+      activeOnly = url.searchParams.get("active") === "true";
+    },
+    onCategoryMutation: (body) => {
+      if (typeof body.active === "boolean") active = body.active;
+    },
+  });
+
+  await page.goto("/en-CA/admin/products/categories");
+  const category = page.getByRole("cell", { name: "Laptops", exact: true });
+  await expect(category).toBeVisible();
+  await page.getByRole("combobox", { name: "Status" }).click();
+  await page.getByRole("option", { name: "Active", exact: true }).click();
+  await expect.poll(() => activeOnly).toBe(true);
+  await openFirstRowActionMenu(page);
+  await page.getByRole("menuitem", { name: "Deactivate", exact: true }).click();
+  await page.getByRole("dialog").getByRole("button", { name: "Confirm" }).click();
+  await expect(category).toHaveCount(0, { timeout: 5000 });
+
+  await page.getByRole("button", { name: "Clear filters" }).click();
+  await expect(category).toBeVisible();
+  await expect(
+    page.getByRole("cell", { name: "Inactive", exact: true }),
+  ).toBeVisible();
 });
 
 test("product category generic listing uses catalogue navigation, filters, pagination, and child scopes", async ({

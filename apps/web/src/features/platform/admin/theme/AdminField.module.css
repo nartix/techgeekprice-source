@@ -1,0 +1,3 @@
+.input[data-variant="default"] {
+  --input-bg: var(--tgp-admin-field-bg);
+}
