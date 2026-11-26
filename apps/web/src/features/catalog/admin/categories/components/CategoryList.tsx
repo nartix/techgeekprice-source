@@ -351,25 +351,29 @@ function AdminCategoryListContent({
         scope={scope}
         state={breadcrumbState}
       />
-      <CategoryFilters
-        activeVisible={
-          capabilitiesState.status !== "ready" ||
-          capabilitiesState.capabilities.allowedFilters.includes("active")
+      <AdminResourceTable
+        result={result}
+        filters={
+          <CategoryFilters
+            activeVisible={
+              capabilitiesState.status !== "ready" ||
+              capabilitiesState.capabilities.allowedFilters.includes("active")
+            }
+            disabled={result.isLoading || !listAvailability.usable}
+            filters={filters}
+            qVisible={
+              capabilitiesState.status !== "ready" ||
+              capabilitiesState.capabilities.searchableFields.length > 0
+            }
+            onChange={setFilters}
+            slugVisible={
+              capabilitiesState.status !== "ready" ||
+              capabilitiesState.capabilities.allowedFilters.includes("slug")
+            }
+            validation={filterValidation}
+          />
         }
-        disabled={result.isLoading || !listAvailability.usable}
-        filters={filters}
-        qVisible={
-          capabilitiesState.status !== "ready" ||
-          capabilitiesState.capabilities.searchableFields.length > 0
-        }
-        onChange={setFilters}
-        slugVisible={
-          capabilitiesState.status !== "ready" ||
-          capabilitiesState.capabilities.allowedFilters.includes("slug")
-        }
-        validation={filterValidation}
       />
-      <AdminResourceTable result={result} />
     </Stack>
   );
 }
@@ -496,12 +500,16 @@ export function CategoryListView({
         scope={resolvedScope}
         state={breadcrumbState}
       />
-      <CategoryFilters
-        disabled={loading}
-        filters={filters}
-        onChange={(nextFilters) => onFiltersChange?.(nextFilters)}
+      <AdminResourceTable
+        result={result}
+        filters={
+          <CategoryFilters
+            disabled={loading}
+            filters={filters}
+            onChange={(nextFilters) => onFiltersChange?.(nextFilters)}
+          />
+        }
       />
-      <AdminResourceTable result={result} />
     </Stack>
   );
 }

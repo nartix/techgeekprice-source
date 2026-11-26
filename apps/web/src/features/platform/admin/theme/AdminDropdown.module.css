@@ -1,0 +1,57 @@
+/* The menu can be portaled outside the admin shell. Use palette tokens that
+   are available there as well as inside the inline listing filters. */
+.dropdown {
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+  --choice-current-bg: var(--mantine-color-blue-1);
+  --choice-current-text: var(--mantine-color-blue-9);
+  --choice-highlight-bg: var(--mantine-color-blue-8);
+  --choice-highlight-text: var(--mantine-color-white);
+}
+
+[data-mantine-color-scheme="dark"] .dropdown {
+  --choice-current-bg: var(--mantine-color-blue-9);
+  --choice-current-text: var(--mantine-color-white);
+  --choice-highlight-bg: var(--mantine-color-blue-4);
+  --choice-highlight-text: var(--mantine-color-black);
+}
+
+.dropdown
+  [role="option"][data-combobox-active]:not(
+    [aria-disabled="true"],
+    [data-combobox-disabled]
+  ) {
+  background-color: var(--choice-current-bg);
+  color: var(--choice-current-text);
+  --mantine-color-dimmed: var(--choice-current-text);
+  outline: 1px solid currentColor;
+  outline-offset: -1px;
+}
+
+.dropdown
+  [role="option"]:not([aria-disabled="true"], [data-combobox-disabled]):is(
+    :hover,
+    [data-combobox-selected]
+  ),
+.dropdown
+  [role="menuitem"]:not(:disabled, [data-disabled], [aria-disabled="true"]):is(
+    :hover,
+    :focus-visible
+  ) {
+  background-color: var(--choice-highlight-bg);
+  color: var(--choice-highlight-text);
+  --mantine-color-dimmed: var(--choice-highlight-text);
+}
+@media (forced-colors: active) {
+  .dropdown
+    :is([role="option"], [role="menuitem"]):is(
+      :hover,
+      :focus-visible,
+      [data-combobox-selected]
+    ) {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
+}

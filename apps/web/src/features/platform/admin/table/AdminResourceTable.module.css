@@ -1,0 +1,36 @@
+.panel {
+  min-inline-size: 0;
+  container-type: inline-size;
+  background: var(--admin-chrome-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--mantine-radius-md);
+}
+
+.panel table {
+  border-collapse: collapse;
+}
+
+.panel th,
+.panel td {
+  font-size: var(--mantine-font-size-sm);
+  vertical-align: middle;
+}
+
+.panel th {
+  border-block-start: 1px solid var(--admin-border);
+}
+
+.footer {
+  padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+  border-block-start: 1px solid var(--admin-border);
+}
+
+.footer > :first-child {
+  margin-inline-end: auto;
+}
+
+@container (max-width: 36rem) {
+  .footer > :first-child {
+    flex-basis: 100%;
+  }
+}

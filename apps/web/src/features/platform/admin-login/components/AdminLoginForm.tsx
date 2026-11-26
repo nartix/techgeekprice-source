@@ -10,6 +10,7 @@ import {
   ThemeIcon,
   Title,
 } from "@mantine/core";
+import { useMounted } from "@mantine/hooks";
 import { IconShieldLock } from "@tabler/icons-react";
 import { createAdminAuthClient } from "@tgp/api-client";
 import { useTranslations } from "next-intl";
@@ -48,6 +49,7 @@ export function AdminLoginForm({
 }: AdminLoginFormProps) {
   const t = useTranslations("Admin.Login");
   const router = useRouter();
+  const mounted = useMounted();
   const [formError, setFormError] = useState<string | null>(null);
   const provider = useMemo(
     () =>
@@ -94,7 +96,12 @@ export function AdminLoginForm({
   }
 
   return (
-    <form className={classes.card} onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form
+      className={classes.card}
+      method="post"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+    >
       <Stack gap="xl">
         <Stack align="center" className={classes.header} gap="md">
           <ThemeIcon className={classes.icon} radius="xl" size={56}>
@@ -119,7 +126,7 @@ export function AdminLoginForm({
               color="indigo.8"
               fullWidth
               size="md"
-              disabled={isSubmitting}
+              disabled={!mounted || isSubmitting}
               onClick={() => {
                 setFormError(null);
                 setValue("usernameOrEmail", "demo", { shouldValidate: true });
@@ -181,6 +188,7 @@ export function AdminLoginForm({
         />
         <Button
           className={classes.submitButton}
+          disabled={!mounted}
           fullWidth
           loading={isSubmitting}
           size="lg"

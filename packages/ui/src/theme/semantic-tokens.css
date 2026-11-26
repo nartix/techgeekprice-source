@@ -1,4 +1,7 @@
+/* Admin forms and portal-rendered controls share these field surfaces. */
 :root {
+  --tgp-admin-field-bg-dark: #10171f;
+  --tgp-admin-field-bg: #fafcfe;
   --tgp-color-page-bg: var(--mantine-color-body);
   --tgp-color-surface: var(--mantine-color-white);
   --tgp-color-surface-elevated: var(--mantine-color-white);
@@ -21,6 +24,7 @@
 }
 
 [data-mantine-color-scheme="dark"] {
+  --tgp-admin-field-bg: var(--tgp-admin-field-bg-dark);
   --tgp-color-page-bg: var(--mantine-color-body);
   --tgp-color-surface: var(--mantine-color-dark-7);
   --tgp-color-surface-elevated: var(--mantine-color-dark-6);

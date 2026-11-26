@@ -504,6 +504,26 @@
   background: var(--admin-control-bg);
 }
 
+.root
+  :global(.mantine-Input-input[data-variant="default"]):is(
+    :focus,
+    :focus-within
+  ) {
+  --input-bd-focus: var(--admin-accent);
+  outline: 2px solid var(--admin-accent);
+  outline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  .root
+    :global(.mantine-Input-input[data-variant="default"]):is(
+      :focus,
+      :focus-within
+    ) {
+    outline-color: Highlight;
+  }
+}
+
 .root :global(.mantine-Table-table) {
   --table-border-color: var(--admin-border);
   --table-hover-color: var(--admin-table-hover-bg);

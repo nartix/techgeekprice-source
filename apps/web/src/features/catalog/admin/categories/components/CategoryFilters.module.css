@@ -1,0 +1,30 @@
+.panel {
+  padding: var(--mantine-spacing-md);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr) minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--mantine-spacing-xs);
+}
+
+@container (max-width: 52rem) {
+  .fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .search {
+    grid-column: 1 / -1;
+  }
+}
+
+@container (max-width: 24rem) {
+  .panel {
+    padding: var(--mantine-spacing-sm);
+  }
+
+  .fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
