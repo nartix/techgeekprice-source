@@ -8,9 +8,12 @@ import {
   IconX,
 } from "@tabler/icons-react";
 
+import type { Ref } from "react";
+
 import classes from "./AdminShell.module.css";
 
 interface AdminHeaderProps {
+  menuButtonRef?: Ref<HTMLButtonElement>;
   menuControl: "navigation" | "sidebar";
   menuOpened: boolean;
   menuLabel: string;
@@ -19,6 +22,7 @@ interface AdminHeaderProps {
 }
 
 export function AdminHeader({
+  menuButtonRef,
   menuControl,
   menuOpened,
   menuLabel,
@@ -32,6 +36,7 @@ export function AdminHeader({
     <Group className={classes.headerContent} justify="space-between">
       <Group gap="sm">
         <ActionIcon
+          ref={menuButtonRef}
           aria-expanded={menuExpanded}
           aria-label={menuLabel}
           className={classes.headerMenuButton}

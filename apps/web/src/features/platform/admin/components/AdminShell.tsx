@@ -3,7 +3,7 @@
 import { AppShell, MantineProvider } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { useTranslations } from "next-intl";
-import type { ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 
 import { AdminHeader } from "./AdminHeader";
 import { AdminLogoutButton } from "./AdminLogoutButton";
@@ -14,8 +14,8 @@ import type { AdminIdentity } from "../types/admin.types";
 
 type Locale = "en-CA" | "en-US" | "fr-CA";
 
-const ADMIN_NAVBAR_WIDTH = 304;
-const ADMIN_NAVBAR_COLLAPSED_WIDTH = 80;
+const ADMIN_NAVBAR_WIDTH = 252;
+const ADMIN_NAVBAR_COLLAPSED_WIDTH = 68;
 
 interface AdminShellProps {
   apiBaseUrl: string;
@@ -31,10 +31,18 @@ export function AdminShell({
   locale,
 }: AdminShellProps) {
   const [mobileOpened, { close, toggle }] = useDisclosure();
-  const [sidebarCollapsed, { toggle: toggleSidebarCollapsed }] =
-    useDisclosure(false);
+  const [sidebarPreference, setSidebarPreference] = useState<boolean>();
+  const tablet = useMediaQuery("(max-width: 63.99em)", false);
   const isDesktopSidebar = useMediaQuery("(min-width: 48em)", false);
-  const sidebarIsCollapsed = isDesktopSidebar && sidebarCollapsed;
+  const sidebarIsCollapsed = isDesktopSidebar && (sidebarPreference ?? tablet);
+  const mobileNavVisible = !isDesktopSidebar && mobileOpened;
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const closeMobileNav = () => {
+    close();
+    menuButton.current?.focus();
+  };
+  const toggleSidebarCollapsed = () =>
+    setSidebarPreference(!sidebarIsCollapsed);
   const t = useTranslations("Admin.Navigation");
   const menuLabel = isDesktopSidebar
     ? sidebarIsCollapsed
@@ -77,18 +85,35 @@ export function AdminShell({
           breakpoint: "sm",
           collapsed: { mobile: !mobileOpened },
         }}
+        onKeyDown={(event) => {
+          if (
+            mobileNavVisible &&
+            event.key === "Escape" &&
+            !event.defaultPrevented &&
+            !(
+              event.target instanceof Element &&
+              event.target.closest('[role="menu"]')
+            )
+          ) {
+            closeMobileNav();
+          }
+        }}
         padding={{ base: "md", sm: "xl" }}
       >
         <AppShell.Header>
           <AdminHeader
+            menuButtonRef={menuButton}
             menuControl="navigation"
             menuLabel={menuLabel}
             menuOpened={mobileOpened}
             onMenuToggle={handleMenuToggle}
-            title={t("dashboard")}
+            title={t("admin")}
           />
         </AppShell.Header>
-        <AppShell.Navbar>
+        <AppShell.Navbar
+          aria-label={t("admin")}
+          inert={!isDesktopSidebar && !mobileOpened}
+        >
           <AdminSidebar
             collapsed={sidebarIsCollapsed}
             identity={identity}
@@ -103,10 +128,10 @@ export function AdminShell({
             onCollapseToggle={
               isDesktopSidebar ? toggleSidebarCollapsed : undefined
             }
-            onNavigate={close}
+            onNavigate={mobileNavVisible ? closeMobileNav : close}
           />
         </AppShell.Navbar>
-        <AppShell.Main>{children}</AppShell.Main>
+        <AppShell.Main inert={mobileNavVisible}>{children}</AppShell.Main>
       </AppShell>
     </MantineProvider>
   );

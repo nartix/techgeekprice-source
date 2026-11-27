@@ -1,3 +1,4 @@
+import { Menu } from "@mantine/core";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import frCaMessages from "../../../../../messages/fr-CA.json";
@@ -5,6 +6,7 @@ import {
   render,
   screen,
   userEvent,
+  within,
 } from "../../../../../tests/test-utils/render";
 import { AdminSidebar } from "../components/AdminSidebar";
 import type { AdminIdentity } from "../types/admin.types";
@@ -28,10 +30,7 @@ describe("AdminSidebar", () => {
 
   it("shows non-strict navigation for admins", () => {
     render(
-      <AdminSidebar
-        identity={identity({ roles: ["ADMIN"] })}
-        locale="en-CA"
-      />,
+      <AdminSidebar identity={identity({ roles: ["ADMIN"] })} locale="en-CA" />,
     );
 
     expect(screen.getByText("General")).toBeVisible();
@@ -70,10 +69,7 @@ describe("AdminSidebar", () => {
 
   it("hides Product Categories for admin-role-only identities", () => {
     render(
-      <AdminSidebar
-        identity={identity({ roles: ["ADMIN"] })}
-        locale="en-CA"
-      />,
+      <AdminSidebar identity={identity({ roles: ["ADMIN"] })} locale="en-CA" />,
     );
 
     expect(
@@ -175,9 +171,9 @@ describe("AdminSidebar", () => {
       />,
     );
 
-    expect(screen.getByRole("link", { name: /dashboard/i })).not.toHaveAttribute(
-      "data-active",
-    );
+    expect(
+      screen.getByRole("link", { name: /dashboard/i }),
+    ).not.toHaveAttribute("data-active");
     expect(screen.getByRole("link", { name: /users/i })).toHaveAttribute(
       "data-active",
     );
@@ -228,7 +224,7 @@ describe("AdminSidebar", () => {
           ],
         })}
         locale="en-CA"
-        logoutAction={<button type="button">Sign out</button>}
+        logoutAction={<Menu.Item>Sign out</Menu.Item>}
         onCollapseToggle={onCollapseToggle}
       />,
     );
@@ -260,32 +256,48 @@ describe("AdminSidebar", () => {
     expect(screen.getByText("ADMIN", { exact: true })).toBeVisible();
   });
 
-  it("opens a single logout action from the user info popover", async () => {
-    const user = userEvent.setup();
+  it.each([true, false])(
+    "shows the signed-in identity and restores keyboard focus (collapsed=%s)",
+    async (collapsed) => {
+      const user = userEvent.setup();
 
-    render(
-      <AdminSidebar
-        identity={identity({ roles: ["ADMIN"] })}
-        locale="en-CA"
-        logoutAction={<button type="button">Sign out</button>}
-      />,
-    );
+      render(
+        <AdminSidebar
+          collapsed={collapsed}
+          identity={identity({
+            username: "alexandra.martin-smith",
+            roles: ["ADMIN"],
+          })}
+          locale="en-CA"
+          logoutAction={<Menu.Item>Sign out</Menu.Item>}
+        />,
+      );
 
-    expect(screen.queryByRole("button", { name: /sign out/i })).toBeNull();
+      expect(screen.queryByRole("menuitem", { name: /sign out/i })).toBeNull();
 
-    await user.click(
-      screen.getByRole("button", { name: /open account menu for admin/i }),
-    );
-
-    expect(screen.getByRole("button", { name: /sign out/i })).toBeVisible();
-  });
+      const trigger = screen.getByRole("button", {
+        name: /open account menu for alexandra.martin-smith/i,
+      });
+      trigger.focus();
+      await user.keyboard("{Enter}");
+      const menu = within(screen.getByRole("menu"));
+      expect(menu.getByText("alexandra.martin-smith")).toBeVisible();
+      expect(menu.getByText("ADMIN")).toBeVisible();
+      expect(menu.getAllByRole("menuitem")).toHaveLength(1);
+      await user.keyboard("{ArrowDown}");
+      expect(screen.getByRole("menuitem", { name: /sign out/i })).toHaveFocus();
+      await user.keyboard("{Escape}");
+      expect(screen.queryByRole("menu")).toBeNull();
+      expect(trigger).toHaveFocus();
+    },
+  );
 
   it("does not render logout at the bottom of the sidebar", () => {
     render(
       <AdminSidebar identity={identity({ roles: ["ADMIN"] })} locale="en-CA" />,
     );
 
-    expect(screen.queryByRole("button", { name: /sign out/i })).toBeNull();
+    expect(screen.queryByRole("menuitem", { name: /sign out/i })).toBeNull();
   });
 });
 

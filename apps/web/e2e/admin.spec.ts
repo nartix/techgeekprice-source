@@ -220,7 +220,7 @@ test("renders public login separately from the protected shell", async ({
     page.getByRole("heading", { name: /admin sign in/i }),
   ).toBeVisible();
   await expect(page.getByRole("button", { name: /sign in/i })).toBeVisible();
-  await expect(page.getByRole("button", { name: /sign out/i })).toHaveCount(0);
+  await expect(page.getByRole("menuitem", { name: /sign out/i })).toHaveCount(0);
 
   const loginShell = page.locator("main");
   const shellBox = await loginShell.boundingBox();
@@ -298,9 +298,43 @@ test("admin can log in, reach dashboard, and log out under two minutes", async (
   await page
     .getByRole("button", { name: /open account menu for admin/i })
     .click();
-  await page.getByRole("button", { name: /sign out/i }).click();
+  await page.getByRole("menuitem", { name: /sign out/i }).click();
   await expect(page).toHaveURL(/\/en-CA\/admin\/login$/);
   expect(Date.now() - startedAt).toBeLessThan(120_000);
+});
+
+test("mobile Escape dismisses the account menu before closing navigation", async ({ page }) => {
+  await mockAdminApi(page, { identity: adminIdentity });
+  await page.setViewportSize({ width: 390, height: 650 });
+  await page.goto("/en-CA/admin");
+
+  const open = page.getByRole("button", { name: "Open navigation" });
+  await open.press("Enter");
+  const account = page.getByRole("button", { name: /open account menu for admin/i });
+  await account.press("Enter");
+  const signOut = page.getByRole("menuitem", { name: "Sign out" });
+  await expect(signOut).toBeFocused();
+  await signOut.press("Escape");
+  await expect(account).toBeFocused();
+  await account.press("Escape");
+  await expect(open).toBeFocused();
+  await expect(open).toHaveAttribute("aria-expanded", "false");
+  const sidebar = page.locator(".mantine-AppShell-navbar");
+  await expect(sidebar).toHaveJSProperty("inert", true);
+  await expect(sidebar).not.toBeInViewport();
+});
+
+test("desktop resource navigation clears an open mobile drawer", async ({ page }) => {
+  await mockAdminApi(page, { identity: adminIdentity });
+  await page.setViewportSize({ width: 390, height: 650 });
+  await page.goto("/en-CA/admin");
+  await page.getByRole("button", { name: "Open navigation" }).click();
+  await page.setViewportSize({ width: 820, height: 900 });
+  await page.getByRole("navigation").getByRole("link", { name: "Users", exact: true }).click();
+  await expect(page).toHaveURL(/\/admin\/users$/);
+  await page.setViewportSize({ width: 390, height: 650 });
+  await expect(page.getByRole("button", { name: "Open navigation" })).toHaveAttribute("aria-expanded", "false");
+  await expect(page.getByRole("main")).toHaveJSProperty("inert", false);
 });
 
 test("moderator login succeeds with limited navigation", async ({ page }) => {
