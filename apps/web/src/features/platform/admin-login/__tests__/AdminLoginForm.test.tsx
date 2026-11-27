@@ -84,7 +84,7 @@ describe("AdminLoginForm", () => {
       screen.getByRole("heading", { name: /admin sign in/i }),
     ).toBeVisible();
     expect(
-      screen.getByText(/welcome back! please sign in to continue/i),
+      screen.getByText(/welcome back. sign in to your workspace/i),
     ).toBeVisible();
     expect(
       screen.getByRole("textbox", { name: /username or email/i }),
@@ -99,6 +99,21 @@ describe("AdminLoginForm", () => {
       screen.getByLabelText(/^password/i, { selector: "input" }),
     ).toHaveAttribute("placeholder", "Enter your password");
     expect(screen.getByRole("button", { name: /sign in/i })).toBeEnabled();
+  });
+
+  it("reveals and hides the password from the keyboard", async () => {
+    const user = userEvent.setup();
+    render(<AdminLoginForm apiBaseUrl="https://spring.test" locale="en-CA" />);
+    const password = screen.getByLabelText(/^password/i, { selector: "input" });
+    password.focus();
+    await user.tab();
+    const toggle = screen.getByRole("button", { name: "Show password" });
+    expect(toggle).toHaveFocus();
+    await user.keyboard(" ");
+    expect(password).toHaveAttribute("type", "text");
+    expect(toggle).toHaveAttribute("aria-pressed", "true");
+    await user.keyboard("{Enter}");
+    expect(password).toHaveAttribute("type", "password");
   });
 
   it("shows required validation and supports keyboard submission", async () => {

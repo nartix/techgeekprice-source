@@ -1,139 +1,124 @@
 .card {
   width: 100%;
-  border: 1px solid rgb(148 163 184 / 0.22);
-  border-radius: 8px;
-  padding: clamp(2rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 3.75rem);
-  background:
-    linear-gradient(180deg, rgb(17 24 39 / 0.86), rgb(9 14 23 / 0.93)),
-    color-mix(in srgb, var(--mantine-color-dark-9) 90%, transparent);
-  box-shadow:
-    0 32px 90px rgb(2 6 23 / 0.42),
-    inset 0 1px 0 rgb(255 255 255 / 0.06);
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid #344154;
+  border-radius: var(--mantine-radius-lg);
+  background: linear-gradient(155deg, #18212e, #111924 85%);
+  box-shadow: 0 14px 40px rgb(4 9 17 / 18%);
   color: var(--mantine-color-gray-0);
-  backdrop-filter: blur(20px);
 }
 
 .header {
   text-align: center;
+  margin-bottom: var(--mantine-spacing-xs);
 }
 
 .icon {
-  border: 1px solid
-    color-mix(in srgb, var(--mantine-color-indigo-4) 70%, transparent);
-  background: color-mix(in srgb, var(--mantine-color-dark-9) 70%, transparent);
   color: var(--mantine-color-indigo-3);
-  box-shadow: 0 0 22px rgb(99 102 241 / 0.25);
+  border: 1px solid #465780;
+  background: #202c42;
+}
+
+.brand {
+  color: #afbed2;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
 }
 
 .title {
-  color: var(--mantine-color-white);
-  font-size: clamp(1.9rem, 5vw, 2.25rem);
-  font-weight: 800;
-  letter-spacing: 0;
-  line-height: 1.1;
+  color: var(--mantine-color-gray-0);
+  font-size: clamp(1.75rem, 4vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.028em;
+  font-weight: 600;
+}
+
+.subtitle,
+.input::placeholder,
+.innerInput::placeholder {
+  color: #a9b7ca;
 }
 
 .subtitle {
-  max-width: 22rem;
-  color: rgb(203 213 225 / 0.7);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.45;
+  font-size: var(--mantine-font-size-sm);
 }
 
 .label {
-  margin-bottom: 0.5rem;
-  color: rgb(241 245 249 / 0.9);
-  font-size: 0.875rem;
-  font-weight: 800;
+  color: var(--mantine-color-gray-2);
+  margin-bottom: 0.3rem;
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
 }
 
 .input {
-  min-height: 3.125rem;
-  border: 1px solid rgb(148 163 184 / 0.2);
-  border-radius: 8px;
+  min-height: 2.875rem;
+  color: var(--mantine-color-gray-0);
   background: var(--tgp-admin-field-bg-dark);
-  color: var(--mantine-color-white);
+  border-color: #647186;
   font-size: 1rem;
-  font-weight: 600;
-  transition:
-    border-color 140ms ease,
-    box-shadow 140ms ease,
-    background-color 140ms ease;
 }
 
-.input::placeholder {
-  color: rgb(203 213 225 / 0.58);
-  font-weight: 600;
-}
-
-.card :global(.mantine-PasswordInput-innerInput) {
-  color: var(--mantine-color-white);
+.innerInput {
+  color: inherit;
   font-size: 1rem;
-  font-weight: 600;
 }
 
-.card :global(.mantine-PasswordInput-innerInput)::placeholder {
-  color: rgb(203 213 225 / 0.58);
-  font-weight: 600;
+.input:focus-within,
+.input:focus {
+  border-color: var(--mantine-color-indigo-3);
+  outline: 2px solid var(--mantine-color-indigo-3);
+  outline-offset: 1px;
 }
 
-.input:focus,
-.input:focus-within {
-  border-color: var(--mantine-color-indigo-4);
-  box-shadow: 0 0 0 2px rgb(99 102 241 / 0.22);
+.toggle {
+  width: 2.75rem;
+  height: 2.75rem;
+  color: #acbad0;
 }
 
-.fieldError {
-  color: var(--mantine-color-red-3);
-  font-weight: 700;
+.toggle:hover {
+  background: #26334a;
+  color: white;
 }
 
-.alert {
-  border: 1px solid rgb(248 113 113 / 0.28);
-  background: rgb(127 29 29 / 0.2);
-  color: var(--mantine-color-red-1);
+.card button:focus-visible {
+  outline: 2px solid var(--mantine-color-indigo-3);
+  outline-offset: 2px;
 }
 
 .submitButton {
-  height: 3.375rem;
-  border-radius: 8px;
-  background: linear-gradient(
-    180deg,
-    var(--mantine-color-indigo-5),
-    var(--mantine-color-blue-7)
-  );
-  box-shadow:
-    0 16px 34px rgb(37 99 235 / 0.3),
-    0 0 24px rgb(99 102 241 / 0.28);
-  font-weight: 800;
+  margin-top: var(--mantine-spacing-xs);
+  min-height: 2.875rem;
+  background: linear-gradient(170deg, #4b64ca, #2965ae);
+  box-shadow: 0 2px 5px rgb(4 9 17 / 18%);
+  color: white;
+  font-weight: 600;
 }
 
-.submitButton:hover {
-  background: linear-gradient(
-    180deg,
-    var(--mantine-color-indigo-4),
-    var(--mantine-color-blue-6)
-  );
+.submitButton:hover:enabled {
+  filter: brightness(1.07);
 }
-
+.submitButton:active:enabled {
+  filter: brightness(0.94);
+}
 .submitButton:disabled {
-  opacity: 0.82;
+  background: #374563;
+  color: #cad4e3;
+}
+.fieldError {
+  color: var(--mantine-color-red-3);
+}
+.input[data-error] {
+  border-color: var(--mantine-color-red-3);
+}
+.alert {
+  background: #382530;
 }
 
-.card :global(.mantine-PasswordInput-visibilityToggle) {
-  color: rgb(203 213 225 / 0.72);
-}
-
-.card :global(.mantine-PasswordInput-visibilityToggle:hover) {
-  background: rgb(148 163 184 / 0.12);
-  color: var(--mantine-color-white);
-}
-
-@media (max-width: 40em) {
-  .card {
-    padding: 2rem 1.25rem;
-  }
+.alertMessage {
+  color: var(--mantine-color-red-1);
 }
 
 .demo {
