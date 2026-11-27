@@ -5,7 +5,7 @@ import {
   Avatar,
   Group,
   NavLink,
-  Popover,
+  Menu,
   Stack,
   Text,
   ThemeIcon,
@@ -13,7 +13,8 @@ import {
   UnstyledButton,
 } from "@mantine/core";
 import {
-  IconChevronDown,
+  IconSelector,
+  IconCpu,
   IconFolder,
   IconGauge,
   IconLayoutSidebarLeftCollapse,
@@ -29,6 +30,7 @@ import { adminResources } from "../resources/adminResources";
 import type {
   AdminIdentity,
   AdminResourceGroupKey,
+  AdminResourceMetadata,
 } from "../types/admin.types";
 import { canPerformAdminAction } from "../utils/adminPermissions";
 
@@ -77,6 +79,9 @@ export function AdminSidebar({
   );
   const toggleLabel = collapsed ? t("expandSidebar") : t("collapseSidebar");
   const currentPathname = useAdminPathname();
+  const activeResource = adminResources
+    .filter((resource) => isActiveAdminPath(currentPathname, resource.list))
+    .sort((a, b) => b.list.length - a.list.length)[0];
   const dashboardItems = canPerformAdminAction(identity, "dashboard", "list")
     ? [
         {
@@ -96,7 +101,7 @@ export function AdminSidebar({
       const groupKey = resource.groupKey ?? "pages";
 
       groups[groupKey].push({
-        active: isActiveAdminPath(currentPathname, resource.list),
+        active: resource.name === activeResource?.name,
         current: currentPathname === resource.list,
         href: resource.list,
         icon: getResourceIcon(resource.icon),
@@ -134,16 +139,14 @@ export function AdminSidebar({
       gap="xs"
       h="100%"
     >
-      <Stack className={classes.navList} gap="xs">
-        <Stack className={classes.navProfileGroup} gap="xs">
-          <AdminSidebarProfile
-            collapsed={collapsed}
-            collapseLabel={toggleLabel}
-            managementLabel={t("management")}
-            onCollapseToggle={onCollapseToggle}
-            title={t("admin")}
-          />
-        </Stack>
+      <AdminSidebarProfile
+        collapsed={collapsed}
+        collapseLabel={toggleLabel}
+        managementLabel={t("management")}
+        onCollapseToggle={onCollapseToggle}
+        title={t("admin")}
+      />
+      <Stack className={classes.navList} gap="md">
         {navigationGroups.map((group) => (
           <AdminSidebarGroup
             collapsed={collapsed}
@@ -180,7 +183,7 @@ function AdminSidebarGroup({
   onNavigate,
 }: AdminSidebarGroupProps) {
   return (
-    <Stack className={classes.navGroup} gap="xs">
+    <Stack className={classes.navGroup} gap={2}>
       {collapsed ? null : (
         <Text className={classes.navGroupLabel} component="div" size="xs">
           {group.label}
@@ -218,78 +221,45 @@ function AdminSidebarProfile({
   onCollapseToggle,
   title,
 }: AdminSidebarProfileProps) {
-  if (collapsed) {
-    return onCollapseToggle ? (
-      <Tooltip label={collapseLabel} position="right" withArrow>
-        <ActionIcon
-          aria-expanded={!collapsed}
-          aria-label={collapseLabel}
-          className={classes.profileIconButton}
-          onClick={onCollapseToggle}
-          size={52}
-          type="button"
-          variant="subtle"
-        >
-          <span
-            aria-hidden="true"
-            className={`${classes.profileButtonIcon} ${classes.profileButtonDefaultIcon}`}
-          >
-            <IconGauge size={22} />
-          </span>
-          <span
-            aria-hidden="true"
-            className={`${classes.profileButtonIcon} ${classes.profileButtonHoverIcon}`}
-          >
-            <IconLayoutSidebarLeftExpand size={22} />
-          </span>
-        </ActionIcon>
-      </Tooltip>
-    ) : (
-      <ThemeIcon
-        className={classes.profileIconButton}
-        size={52}
-        variant="light"
-      >
-        <IconGauge aria-hidden="true" size={22} />
-      </ThemeIcon>
-    );
-  }
-
+  const ToggleIcon = collapsed
+    ? IconLayoutSidebarLeftExpand
+    : IconLayoutSidebarLeftCollapse;
   return (
-    <Group
-      className={classes.profilePanel}
-      justify="space-between"
-      wrap="nowrap"
-    >
-      <Group gap="sm" miw={0} wrap="nowrap">
-        <ThemeIcon className={classes.profileIcon} size={44} variant="light">
-          <IconGauge aria-hidden="true" size={22} />
-        </ThemeIcon>
-        <Stack gap={2} miw={0}>
-          <Text className={classes.profileTitle} fw={700} truncate="end">
-            {title}
-          </Text>
-          <Text className={classes.profileSubtitle} size="sm" truncate="end">
-            {managementLabel}
-          </Text>
-        </Stack>
-      </Group>
-      <Group gap={6} wrap="nowrap">
-        {onCollapseToggle ? (
-          <Tooltip label={collapseLabel} position="right" withArrow>
-            <ActionIcon
-              aria-expanded={!collapsed}
-              aria-label={collapseLabel}
-              className={classes.collapseButton}
-              onClick={onCollapseToggle}
-              size="lg"
-              variant="subtle"
-            >
-              <IconLayoutSidebarLeftCollapse aria-hidden="true" size={20} />
-            </ActionIcon>
-          </Tooltip>
-        ) : null}
-      </Group>
+    <Group className={classes.profilePanel} gap="xs" wrap="nowrap">
+      {!collapsed && (
+        <>
+          <ThemeIcon className={classes.profileIcon} size={32} variant="filled">
+            <IconCpu aria-hidden="true" size={20} stroke={1.65} />
+          </ThemeIcon>
+          <Stack gap={0} miw={0}>
+            <Text className={classes.profileTitle} fw={650} size="sm">
+              {title}
+            </Text>
+            <Text className={classes.profileSubtitle} size="xs">
+              {managementLabel}
+            </Text>
+          </Stack>
+        </>
+      )}
+      {onCollapseToggle && (
+        <Tooltip
+          label={collapseLabel}
+          position="right"
+          events={{ focus: true, hover: true, touch: false }}
+        >
+          <ActionIcon
+            aria-expanded={!collapsed}
+            aria-label={collapseLabel}
+            className={classes.collapseButton}
+            onClick={onCollapseToggle}
+            size={36}
+            type="button"
+            variant="transparent"
+          >
+            <ToggleIcon aria-hidden="true" size={18} stroke={1.65} />
+          </ActionIcon>
+        </Tooltip>
+      )}
     </Group>
   );
 }
@@ -325,14 +295,13 @@ function AdminSidebarLink({
     <NavLink
       active={active}
       aria-label={label}
-      aria-current={current ? "page" : undefined}
+      aria-current={current ? "page" : active ? "location" : undefined}
       className={linkClassName}
       component={Link}
       href={href}
       label={collapsed ? undefined : label}
-      leftSection={<span className={classes.sidebarLinkIcon}>{icon}</span>}
+      leftSection={icon}
       locale={locale}
-      noWrap
       onClick={onNavigate}
       styles={
         collapsed
@@ -351,7 +320,11 @@ function AdminSidebarLink({
   }
 
   return (
-    <Tooltip label={label} position="right" withArrow>
+    <Tooltip
+      label={label}
+      position="right"
+      events={{ focus: true, hover: true, touch: false }}
+    >
       {link}
     </Tooltip>
   );
@@ -383,103 +356,93 @@ function AdminSidebarUserInfo({
 
   const userDetails = (
     <>
-      <Avatar className={classes.userInfoAvatar} size={44}>
-        {initials}
-      </Avatar>
-      <Stack gap={2} miw={0}>
-        <Text className={classes.userInfoName} fw={700} truncate="end">
-          {identity.username}
-        </Text>
-        <Text className={classes.userInfoRole} size="sm" truncate="end">
-          {roleLabel}
-        </Text>
-      </Stack>
-    </>
-  );
-
-  if (!logoutAction) {
-    return (
-      <div className={classes.userInfoWrapper}>
-        {collapsed ? (
-          <Avatar
-            aria-label={accountLabel}
-            className={classes.userInfoAvatarCompact}
-            size={52}
-          >
-            {initials}
-          </Avatar>
-        ) : (
-          <Group className={classes.userInfoPanel} gap="sm" wrap="nowrap">
-            {userDetails}
-          </Group>
-        )}
-      </div>
-    );
-  }
-
-  const target = collapsed ? (
-    <UnstyledButton
-      aria-label={menuLabel}
-      className={classes.userInfoIconButton}
-      type="button"
-    >
       <Avatar
         aria-hidden="true"
-        className={classes.userInfoAvatarCompact}
-        size={52}
+        radius="xl"
+        size={34}
+        classNames={{ placeholder: classes.userInfoAvatar }}
       >
         {initials}
       </Avatar>
-    </UnstyledButton>
-  ) : (
-    <UnstyledButton
-      aria-label={menuLabel}
-      className={`${classes.userInfoPanel} ${classes.userInfoTarget}`}
-      type="button"
-    >
-      <Group gap="sm" wrap="nowrap">
-        {userDetails}
-        <IconChevronDown
-          aria-hidden="true"
-          className={classes.userInfoChevron}
-          size={16}
-        />
-      </Group>
-    </UnstyledButton>
+      {!collapsed && (
+        <Stack gap={1} miw={0}>
+          <Text
+            className={classes.userInfoName}
+            fw={600}
+            size="sm"
+            truncate="end"
+          >
+            {identity.username}
+          </Text>
+          <Text className={classes.userInfoRole} size="xs" truncate="end">
+            {roleLabel}
+          </Text>
+        </Stack>
+      )}
+    </>
   );
 
   return (
     <div className={classes.userInfoWrapper}>
-      <Popover
-        offset={collapsed ? 12 : 8}
-        position={collapsed ? "right-end" : "top-end"}
-        shadow="md"
-        width={collapsed ? 220 : "target"}
-        withinPortal={false}
-        withArrow
-      >
-        <Popover.Target>{target}</Popover.Target>
-        <Popover.Dropdown
-          className={classes.userInfoDropdown}
-          styles={{
-            dropdown: {
-              backgroundColor: "var(--admin-surface-bg)",
-              opacity: 1,
-            },
-            arrow: {
-              backgroundColor: "var(--admin-surface-bg)",
-              opacity: 1,
-            },
-          }}
+      {logoutAction ? (
+        <Menu
+          offset={6}
+          position={collapsed ? "right-end" : "top-start"}
+          shadow="sm"
+          width={216}
+          withinPortal={false}
+          withInitialFocusPlaceholder={false}
         >
-          <div className={classes.userInfoDropdownContent}>{logoutAction}</div>
-        </Popover.Dropdown>
-      </Popover>
+          <Menu.Target>
+            <UnstyledButton
+              aria-description={roleLabel}
+              aria-label={menuLabel}
+              title={accountLabel}
+              className={classes.userInfoPanel}
+              type="button"
+            >
+              {userDetails}
+              {!collapsed && (
+                <IconSelector
+                  aria-hidden="true"
+                  className={classes.userInfoChevron}
+                  size={15}
+                />
+              )}
+            </UnstyledButton>
+          </Menu.Target>
+          <Menu.Dropdown className={classes.userInfoDropdown}>
+            <Menu.Label className={classes.menuIdentity}>
+              <Text
+                component="span"
+                className={classes.userInfoName}
+                size="sm"
+                fw={600}
+              >
+                {identity.username}
+              </Text>
+              <Text component="span" className={classes.userInfoRole} size="xs">
+                {roleLabel}
+              </Text>
+            </Menu.Label>
+            <Menu.Divider />
+            {logoutAction}
+          </Menu.Dropdown>
+        </Menu>
+      ) : (
+        <div
+          aria-label={accountLabel}
+          className={classes.userInfoPanel}
+          title={accountLabel}
+        >
+          {userDetails}
+        </div>
+      )}
     </div>
   );
 }
 
-function getResourceIcon(icon: "productCategories" | "users") {
+function getResourceIcon(icon: AdminResourceMetadata["icon"]) {
   if (icon === "productCategories") {
     return <IconFolder aria-hidden="true" size={20} />;
   }
