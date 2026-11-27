@@ -292,7 +292,7 @@ test("admin can log in, reach dashboard, and log out under two minutes", async (
 
   await expect(page).toHaveURL(/\/en-CA\/admin$/);
   await expect(
-    page.getByRole("heading", { name: /admin dashboard/i }),
+    page.getByRole("heading", { name: /^overview$/i }),
   ).toBeVisible();
 
   await page
@@ -301,6 +301,23 @@ test("admin can log in, reach dashboard, and log out under two minutes", async (
   await page.getByRole("menuitem", { name: /sign out/i }).click();
   await expect(page).toHaveURL(/\/en-CA\/admin\/login$/);
   expect(Date.now() - startedAt).toBeLessThan(120_000);
+});
+
+test("dashboard cards open the localized resource without fetching listings in advance", async ({ page }) => {
+  const categoryListRequests: URL[] = [];
+  await mockAdminApi(page, {
+    identity: catalogueReadOnlyIdentity,
+    onCategoryListRequest: (url) => categoryListRequests.push(url),
+  });
+  await page.goto("/fr-CA/admin");
+  const main = page.getByRole("main");
+  const category = main.getByRole("link", { name: "Catégories de produits" });
+  await expect(main.getByRole("link")).toHaveCount(1);
+  await expect(category).toHaveAccessibleDescription("Classez les produits par catégorie.");
+  expect(categoryListRequests).toHaveLength(0);
+  await category.press("Enter");
+  await expect(page).toHaveURL(/\/fr-CA\/admin\/products\/categories$/);
+  await expect.poll(() => categoryListRequests.length).toBeGreaterThan(0);
 });
 
 test("mobile Escape dismisses the account menu before closing navigation", async ({ page }) => {
@@ -349,7 +366,7 @@ test("moderator login succeeds with limited navigation", async ({ page }) => {
 
   await expect(page).toHaveURL(/\/en-CA\/admin$/);
   await expect(
-    page.getByRole("heading", { name: /admin dashboard/i }),
+    page.getByRole("heading", { name: /^overview$/i }),
   ).toBeVisible();
   await expect(page.getByRole("link", { name: /categories/i })).toHaveCount(0);
   await expect(page.getByRole("link", { name: /users/i })).toHaveCount(0);
@@ -464,7 +481,7 @@ test("admin routes render across key viewport widths and color schemes", async (
 
       await page.goto("/en-CA/admin");
       await expect(
-        page.getByRole("heading", { name: /admin dashboard/i }),
+        page.getByRole("heading", { name: /^overview$/i }),
       ).toBeVisible();
 
       await page.goto("/en-CA/admin/products/categories");
