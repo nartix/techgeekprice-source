@@ -15,7 +15,7 @@ import { IconShieldLock } from "@tabler/icons-react";
 import { createAdminAuthClient } from "@tgp/api-client";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { type MouseEvent, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { createZodFormResolver } from "../../admin/forms/createZodFormResolver";
@@ -51,6 +51,7 @@ export function AdminLoginForm({
   const router = useRouter();
   const mounted = useMounted();
   const [formError, setFormError] = useState<string | null>(null);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const provider = useMemo(
     () =>
       authProvider ??
@@ -102,12 +103,13 @@ export function AdminLoginForm({
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
-      <Stack gap="xl">
-        <Stack align="center" className={classes.header} gap="md">
-          <ThemeIcon className={classes.icon} radius="xl" size={56}>
-            <IconShieldLock aria-hidden="true" size={34} stroke={1.75} />
+      <Stack gap="md">
+        <Stack align="center" className={classes.header} gap="sm">
+          <ThemeIcon className={classes.icon} radius="md" size={48}>
+            <IconShieldLock aria-hidden="true" size={26} stroke={1.75} />
           </ThemeIcon>
           <Stack align="center" gap={4}>
+            <Text className={classes.brand}>Tech Geek Price</Text>
             <Title className={classes.title} order={1}>
               {t("title")}
             </Title>
@@ -140,7 +142,10 @@ export function AdminLoginForm({
           </Stack>
         ) : null}
         {formError ? (
-          <Alert className={classes.alert} color="red">
+          <Alert
+            classNames={{ root: classes.alert, message: classes.alertMessage }}
+            color="red"
+          >
             {formError}
           </Alert>
         ) : null}
@@ -150,6 +155,7 @@ export function AdminLoginForm({
           render={({ field }) => (
             <TextInput
               {...field}
+              radius="md"
               autoComplete="username"
               classNames={{
                 error: classes.fieldError,
@@ -173,11 +179,28 @@ export function AdminLoginForm({
           render={({ field }) => (
             <PasswordInput
               {...field}
+              radius="md"
+              aria-invalid={errors.password ? true : undefined}
+              visible={passwordVisible}
+              onVisibilityChange={setPasswordVisible}
+              rightSectionWidth={48}
+              visibilityToggleButtonProps={{
+                tabIndex: 0,
+                onClick: (event: MouseEvent<HTMLButtonElement>) => {
+                  // Mantine handles pointer presses and Space. Enter and assistive
+                  // technology can activate a button with a click alone.
+                  if (event.detail === 0)
+                    setPasswordVisible((visible) => !visible);
+                },
+                "aria-label": t("togglePassword"),
+              }}
               autoComplete="current-password"
               classNames={{
                 error: classes.fieldError,
                 input: classes.input,
                 label: classes.label,
+                innerInput: classes.innerInput,
+                visibilityToggle: classes.toggle,
               }}
               error={errors.password ? t("errors.passwordRequired") : undefined}
               label={t("passwordLabel")}
@@ -191,7 +214,8 @@ export function AdminLoginForm({
           disabled={!mounted}
           fullWidth
           loading={isSubmitting}
-          size="lg"
+          size="md"
+          radius="md"
           type="submit"
         >
           {t("submit")}

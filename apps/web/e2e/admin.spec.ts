@@ -258,6 +258,27 @@ test("admin sign-in stays disabled before hydration and uses POST for native sub
   }
 });
 
+test("keeps the login form and copyright in view on short laptops", async ({
+  page,
+}) => {
+  await page.goto("/en-CA/admin/login");
+  test.skip(
+    await page.getByRole("button", { name: "Use demo account" }).isVisible(),
+    "The optional portfolio demo panel can extend the form on short viewports.",
+  );
+  await page.evaluate(() => document.fonts.ready);
+  for (const viewport of [
+    { width: 1366, height: 650 },
+    { width: 1280, height: 600 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await expect(page.locator("form")).toBeInViewport({ ratio: 1 });
+    await expect(page.locator("footer")).toBeInViewport({ ratio: 1 });
+    const height = await page.evaluate(() => document.documentElement.scrollHeight);
+    expect(height).toBe(viewport.height);
+  }
+});
+
 test("admin can log in, reach dashboard, and log out under two minutes", async ({
   page,
 }) => {

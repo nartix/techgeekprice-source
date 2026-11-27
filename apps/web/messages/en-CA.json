@@ -83,7 +83,8 @@
     },
     "Login": {
       "title": "Admin sign in",
-      "subtitle": "Welcome back! Please sign in to continue.",
+      "subtitle": "Welcome back. Sign in to your workspace.",
+      "togglePassword": "Show password",
       "usernameLabel": "Username or email",
       "usernameDescription": "Use the admin username or email issued for your account.",
       "usernamePlaceholder": "Enter your username or email",

@@ -83,7 +83,8 @@
     },
     "Login": {
       "title": "Connexion administrateur",
-      "subtitle": "Bienvenue! Veuillez vous connecter pour continuer.",
+      "subtitle": "Bienvenue. Connectez-vous à votre espace de travail.",
+      "togglePassword": "Afficher le mot de passe",
       "usernameLabel": "Nom d'utilisateur ou courriel",
       "usernameDescription": "Utilisez le nom d'utilisateur ou le courriel administrateur associé à votre compte.",
       "usernamePlaceholder": "Entrez votre nom d'utilisateur ou votre courriel",
