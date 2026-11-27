@@ -16,6 +16,25 @@
       "userShowTitle": "Détails de l'utilisateur",
       "userEditTitle": "Modifier l'utilisateur"
     },
+    "Overview": {
+      "title": "Vue d’ensemble",
+      "description": "Gérez votre catalogue et vos activités commerciales.",
+      "empty": "Aucune ressource n’est accessible avec votre compte.",
+      "groups": {
+        "products": {
+          "title": "Gestion du catalogue",
+          "description": "Organisez et tenez à jour votre catalogue de produits."
+        },
+        "pages": {
+          "title": "Gestion des utilisateurs",
+          "description": "Consultez les comptes et leurs droits d’accès."
+        }
+      },
+      "resources": {
+        "productCategories": "Classez les produits par catégorie.",
+        "users": "Consultez les profils, les rôles et l’état des comptes."
+      }
+    },
     "Navigation": {
       "admin": "Administration",
       "accountMenu": "Ouvrir le menu du compte de {username}",

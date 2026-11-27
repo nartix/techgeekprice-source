@@ -1,6 +1,11 @@
 "use client";
 
-import { getAdminIdentity } from "../session/adminIdentityStore";
+import { useSyncExternalStore } from "react";
+
+import {
+  getAdminIdentity,
+  subscribeAdminIdentity,
+} from "../session/adminIdentityStore";
 import { AdminDashboardHome } from "./AdminDashboardHome";
 
 type Locale = "en-CA" | "en-US" | "fr-CA";
@@ -12,5 +17,10 @@ interface AdminDashboardHomePageProps {
 export function AdminDashboardHomePage({
   locale,
 }: AdminDashboardHomePageProps) {
-  return <AdminDashboardHome identity={getAdminIdentity()} locale={locale} />;
+  const identity = useSyncExternalStore(
+    subscribeAdminIdentity,
+    getAdminIdentity,
+    () => null,
+  );
+  return <AdminDashboardHome identity={identity} locale={locale} />;
 }

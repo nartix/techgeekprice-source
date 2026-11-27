@@ -451,57 +451,127 @@
 }
 
 .dashboardHome {
+  --mantine-font-family: var(--font-geist-sans, system-ui), Arial, sans-serif;
+  --mantine-font-family-headings: var(--mantine-font-family);
+  font-family: var(--mantine-font-family);
+  container: dashboard / inline-size;
+  width: 100%;
+  max-width: 72rem;
   color: var(--admin-text);
+}
+
+.dashboardTitle {
+  font-size: clamp(1.875rem, 3vw, 2.25rem);
+  font-weight: 680;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.dashboardIntro,
+.dashboardGroupDescription,
+.dashboardCardDescription {
+  color: var(--admin-text-muted);
+}
+
+.dashboardHome > header {
+  padding-bottom: var(--mantine-spacing-lg);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.dashboardIntro {
+  margin-top: var(--mantine-spacing-xs);
+}
+
+.dashboardGroupTitle {
+  font-size: 1.25rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.dashboardGroupDescription {
+  margin-top: 0.25rem;
 }
 
 .dashboardGrid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--mantine-spacing-md);
-  align-items: stretch;
+  margin-top: var(--mantine-spacing-md);
 }
 
-@media (min-width: 48em) {
+@container dashboard (min-width: 34rem) {
+  .dashboardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container dashboard (min-width: 51rem) {
   .dashboardGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.dashboardCard {
+.dashboardHome .dashboardCard {
+  min-width: 0;
+  padding: var(--mantine-spacing-lg);
   border-color: var(--admin-border);
   background: var(--admin-surface-bg);
-  box-shadow: var(--admin-shadow);
+  color: var(--admin-text);
+  overflow-wrap: anywhere;
+  text-decoration: none;
 }
 
-.dashboardCardContent {
-  height: 100%;
+.dashboardHome .dashboardCard:hover {
+  background: var(--admin-surface-bg-subtle);
+  border-color: var(--admin-nav-current-accent);
 }
 
-.dashboardCardHeader {
-  min-height: 40px;
+.dashboardHome .dashboardCard:active {
+  background: var(--admin-nav-current-bg);
+  border-color: var(--admin-nav-current-accent);
 }
 
-.dashboardCardTitle {
-  line-height: 1.2;
+.dashboardCard:focus-visible {
+  outline: 2px solid var(--tgp-color-focus-ring);
+  outline-offset: 2px;
 }
 
-.dashboardCardIcon {
-  background: var(--admin-accent-soft);
-  color: var(--admin-accent);
+.dashboardCard .dashboardCardIcon {
+  border: 0;
+  background: var(--admin-nav-current-bg);
+  color: var(--admin-nav-current-text);
 }
 
-.dashboardCardDescription {
-  flex: 1;
+.dashboardArrow {
+  flex-shrink: 0;
   color: var(--admin-text-muted);
 }
 
-.dashboardCardAction {
-  align-self: flex-start;
+.dashboardCard:is(:hover, :focus-visible) .dashboardArrow {
+  color: var(--admin-nav-current-text);
+}
+
+.dashboardCardTitle {
+  margin-top: var(--mantine-spacing-md);
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 650;
+}
+
+.dashboardCardDescription {
+  margin-top: 0.25rem;
+  line-height: 1.5;
+}
+
+.dashboardEmpty {
+  padding-block: var(--mantine-spacing-lg);
+  border-top: 1px solid var(--admin-border);
+  color: var(--admin-text-muted);
 }
 
 @media (forced-colors: active) {
   .sidebarLink[data-active],
   .profileIcon,
-  .profileIconButton,
   .dashboardCardIcon {
     outline: 1px solid CanvasText;
   }

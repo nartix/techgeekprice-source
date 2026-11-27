@@ -16,6 +16,25 @@
       "userShowTitle": "User details",
       "userEditTitle": "Edit user"
     },
+    "Overview": {
+      "title": "Overview",
+      "description": "Manage your catalogue and business operations.",
+      "empty": "No resources are available to your account.",
+      "groups": {
+        "products": {
+          "title": "Catalogue management",
+          "description": "Organize and maintain your product catalogue."
+        },
+        "pages": {
+          "title": "User management",
+          "description": "Review user accounts and their access."
+        }
+      },
+      "resources": {
+        "productCategories": "Organize products into categories.",
+        "users": "Review user profiles, roles and account status."
+      }
+    },
     "Navigation": {
       "admin": "Admin",
       "accountMenu": "Open account menu for {username}",

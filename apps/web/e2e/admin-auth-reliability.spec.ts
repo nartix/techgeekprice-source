@@ -88,7 +88,7 @@ for (const locale of ["en-CA", "en-US", "fr-CA"]) {
     await expect(page.getByText(title)).toHaveCount(0);
     await expect(
       page.getByRole("heading", {
-        name: locale === "fr-CA" ? /tableau de bord/i : /admin dashboard/i,
+        name: locale === "fr-CA" ? /^vue d’ensemble$/i : /^overview$/i,
       }),
     ).toBeVisible();
     expect(logouts).toBe(0);
